@@ -11,10 +11,10 @@ const mul = (a, b) => {
     return a * b;
 }
 const div = () => {
-    a= 80 , b=4
-    return a/b;
+    a = 80, b = 4
+    return a / b;
 }
-const arr1 = [10,30,78,40]
+const arr1 = [10, 30, 78, 40]
 
 module.exports = {
     sum,
