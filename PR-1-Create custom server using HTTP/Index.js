@@ -31,7 +31,7 @@ const server = http.createServer((req, res) => {
         case "/register":
             fileName = "./register.html"
             break;
-        case "/shoppinng":
+        case "/shopping":
             fileName = "./shopping.html"
             break;
     }
