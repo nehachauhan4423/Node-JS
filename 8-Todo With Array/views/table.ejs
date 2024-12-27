@@ -17,14 +17,14 @@
                 </tr>
             </thead>
             <tbody>
-                <% recod.map((val.i)=>{ %>
+                <% record.map((val, i)=>{ %>
                     <tr>
-                        <td><% ++i%></td>
+                        <td><%= ++i%></td>
                         <td>
-                            <% val.name %>
+                            <%= val.name %>
                         </td>
                         <td>
-                            <% val.phone %>
+                            <%= val.phone %>
                         </td>
                     </tr>
                 <% }) %>
