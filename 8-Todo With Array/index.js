@@ -17,11 +17,18 @@ app.get('/add',(req,res)=>{
 app.post('/adduser',(req,res)=>{
     const {username,userphone} = req.body;
     let obj = {
+        id: Math.floor(Math.random() * 10000),
         name : username,
         phone : userphone
     }
     record.push(obj);
     console.log("user succssfully register");
+    return res.redirect('/');
+})
+app.get('/deleteuser',(req,res)=>{
+    let id = req.query.deleteId;
+    let deleteData = record.filter(val => val.id != id);
+    record = deleteData;
     return res.redirect('/');
 })
 
