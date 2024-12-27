@@ -2,13 +2,11 @@ const express = require('express')
 const port = 5600;
 const app = express();
 
-app.set('view engine','js');
-
+app.set('view engine','ejs');
 app.get('/',(req,res)=>{
     return res.render('home')
-})
-
-app.get('/pro',(req,res)=>{
+})                              
+app.get('/products',(req,res)=>{
     return res.render('products')
 })
 
