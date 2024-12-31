@@ -24,7 +24,8 @@
                         <td><%= val.name %></td>
                         <td><%= val.phone %></td>
                         <td>
-                            <a href="/deleteuser?deleteid=<%= val.id %>">Delete</a> 
+                            <a href="/deleteuser?deleteid=<%= val.id %>">Delete</a> ||
+                            <a href="edituser?editid=<%= val.id %>">Edit</a>
                         </td>
                     </tr>
                 <% }) %>

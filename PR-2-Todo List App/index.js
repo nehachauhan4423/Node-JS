@@ -17,11 +17,12 @@ app.get('/add',(req,res)=>{
 })
  
 app.post('/adduser',(req,res)=>{
-    const {username,userphone} = req.body;
+    const {username,userphone,userdeadline} = req.body;
     let obj = {
         id:Math.floor(Math.random()*1000),
         name : username,
-        phone : userphone
+        phone : userphone,
+        deadline : userdeadline
     }
     record.push(obj);
     console.log("Record Add");
@@ -32,6 +33,29 @@ app.get('/deleteuser',(req,res)=>{
     let deletedata = record.filter(val=> val.id != id);
     record = deletedata;
     console.log("delete data successfully..!");
+    return res.redirect('/');
+})
+
+app.get('/edituser',(req,res)=>{
+   let id = req.query.editid;
+   let singledata = record.find(val => val.id == id)
+   return res.render('edit',{
+    singledata
+   })
+})
+
+app.post('/updateuser',(req,res)=>{
+    const {editid,username,userphone,userdeadline} = req.body
+    let up = record.map((val)=>{
+        if(val.id == editid){
+            val.name = username;
+            val.phone = userphone;
+            val.deadline = userdeadline;
+            }
+            return val;
+    })
+    record = up;
+    console.log("update data successfully..!");
     return res.redirect('/');
 })
 

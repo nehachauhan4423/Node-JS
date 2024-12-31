@@ -35,6 +35,28 @@ app.get('/deleteuser',(req,res)=>{
     return res.redirect('/');
 })
 
+app.get('/edituser',(req,res)=>{
+   let id = req.query.editid;
+   let singledata = record.find(val => val.id == id)
+   return res.render('edit',{
+    singledata
+   })
+})
+
+app.post('/updateuser',(req,res)=>{
+    const {editid,username,userphone} = req.body
+    let up = record.map((val)=>{
+        if(val.id == editid){
+            val.name = username;
+            val.phone = userphone;
+            }
+            return val;
+    })
+    record = up;
+    console.log("update data successfully..!");
+    return res.redirect('/');
+})
+
 app.listen(port,(err)=>{
     if (err) {
         console.log(err);

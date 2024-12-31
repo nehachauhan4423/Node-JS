@@ -1,0 +1,155 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* General Body Styles */
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #faf3e049;
+            color: #333333; /* Dark text for contrast */
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Heading Styles */
+        h2 {
+            margin-top: 40px;
+            font-size: 28px;
+            color: #C8A165; /* Light golden brown for heading */
+            text-align: center;
+            text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Table Container Styles */
+        .table-container {
+            width: 80%;
+            margin: 40px auto;
+            border-radius: 12px;
+            overflow: hidden;
+            animation: slideIn 1s ease-out forwards; /* Table slide-in animation */
+        }
+
+        /* Table Styles */
+        table {
+            width: 90%;
+            border-collapse: collapse;
+            background-color: #FFFFFF; /* White background for the table */
+            opacity: 0;
+            animation: fadeIn 1.5s ease-out forwards 0.5s; /* Fade-in animation for table */
+        }
+
+        th, td {
+            text-align: center;
+            padding: 12px 15px;
+            border-bottom: 1px solid #E0E0E0; /* Light border for separation */
+        }
+
+        th {
+            background-color: #C8A165; /* Light golden brown for table header */
+            color: #FFFFFF; /* White text for contrast */
+            text-transform: uppercase;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        tr:nth-child(odd) {
+            background-color: #F9F9F9; /* Light gray for odd rows */
+        }
+
+        tr:nth-child(even) {
+            background-color: #FFFFFF; /* White for even rows */
+        }
+
+        tr:hover {
+            background-color: #c8a0652c; /* Light golden brown hover effect */
+            color: #c8a065;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        /* Link Styles */
+        a {
+            text-decoration: none;
+            color: #C8A165; /* Light golden brown for links */
+            font-weight: 500;
+            transition: color 0.3s ease, transform 0.3s ease;
+        }
+
+        /* Add Button Styles */
+        .add-button {
+            display: inline-block;
+            margin: 20px auto;
+            padding: 12px 25px;
+            background-color: #C8A165; /* Light golden brown */
+            color: #FFFFFF;
+            text-align: center;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 16px;
+            border-radius: 25px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .add-button:hover {
+            background-color: #A67C4E; /* Slightly darker golden brown on hover */
+            transform: scale(1.1);
+            box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+
+        @keyframes slideIn {
+            0% {
+                transform: translateX(-100%);
+            }
+            100% {
+                transform: translateX(0);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div align="center" class="table-container">
+        <h2>View User</h2>
+        <table border="1">
+            <thead>
+                <tr>
+                    <th>Sr No</th>
+                    <th>Name</th>
+                    <th>Phone</th>
+                    <th>Deadline</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% record.map((val,i)=>{ %>
+                    <tr>
+                        <td><%= ++i %></td>
+                        <td><%= val.name %></td>
+                        <td><%= val.phone %></td>
+                        <td><%= val.deadline %></td>
+                        <td>
+                            <a href="/deleteuser?deleteid=<%= val.id %>">Delete</a> ||
+                            <a href="edituser?editid=<%= val.id %>">Edit</a>
+                        </td>
+                    </tr>
+                <% }) %>
+            </tbody>
+        </table>
+        <br>
+        <a href="/add" class="add-button">Add User</a>
+    </div>
+</body>
+</html>
