@@ -17,11 +17,11 @@ app.get('/add',(req,res)=>{
 })
  
 app.post('/adduser',(req,res)=>{
-    const {username,userphone,userdeadline} = req.body;
+    const {usertask,userstatus,userdeadline} = req.body;
     let obj = {
         id:Math.floor(Math.random()*1000),
-        name : username,
-        phone : userphone,
+        task : usertask,
+        status : userstatus,
         deadline : userdeadline
     }
     record.push(obj);
@@ -45,11 +45,11 @@ app.get('/edituser',(req,res)=>{
 })
 
 app.post('/updateuser',(req,res)=>{
-    const {editid,username,userphone,userdeadline} = req.body
+    const {editid,usertask,userstatus,userdeadline} = req.body
     let up = record.map((val)=>{
         if(val.id == editid){
-            val.name = username;
-            val.phone = userphone;
+            val.task = usertask;
+            val.status = userstatus;
             val.deadline = userdeadline;
             }
             return val;
