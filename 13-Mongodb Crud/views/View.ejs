@@ -6,9 +6,9 @@
     <title>Document</title>
 </head>
 <body>
-    <div>
+    <div align="center">
         <h1>View User</h1>
-        <table>
+        <table border="1">
             <thead>
                 <tr>
                     <th>Id</th>
@@ -22,9 +22,35 @@
                 </tr>
             </thead>
             <tbody>
-
+                <% record.map((val)=>{%>
+                    <tr>
+                        <td>
+                            <%= val.id %>
+                        </td>
+                        <td>
+                            <%= val?.username%>
+                        </td>
+                        <td>
+                            <%= val?.useremail%>
+                        </td>
+                        <td>
+                            <%= val?.userpassword%>
+                        </td>
+                        <td>
+                            <%= val?.usergender %>
+                        </td>
+                        <td>
+                            <%= val?.userhobby %>
+                        </td>
+                        <td>
+                            <a href="/edituser?editId=<%= val.id%>">Edit</a> ||
+                            <a href="deleteuser?deleteId=<%= val.id%>">Delete</a>
+                        </td>
+                    </tr>
+                <% })%>
             </tbody>
         </table>
+        <a href="/">Add</a>
     </div>
 </body>
 </html>

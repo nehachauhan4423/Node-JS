@@ -8,6 +8,6 @@ db.on("connected",(err)=>{
         console.log(err);
         return false
     }
-    console.log("CONNECTED SUCCESSFULLY..!");
+    console.log("DATABSE CONNECTED SUCCESSFULLY..!");
 })
 module.exports = db;

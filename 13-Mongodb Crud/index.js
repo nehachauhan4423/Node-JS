@@ -27,8 +27,7 @@ app.post('/adduser',(req,res)=>{
         useremail :email,
         userpassword :password,
         usergender :gender,
-        userhobby :hobby,
-        
+        userhobby :hobby
     }).then((record)=>{
         console.log(record);
         console.log("USER CREATE..!");
@@ -70,7 +69,7 @@ app.get('/edituser',(req,res)=>{
 })
 
 //update user
-app.post('/updateUser',(req,res)=>{
+app.post('/updateuser',(req,res)=>{
     const {editId,name,email,password} = req.body;
     userModel.findByIdAndUpdate(editId,{
         username :name,
@@ -81,6 +80,20 @@ app.post('/updateUser',(req,res)=>{
         return res.redirect("/viewuser")
     }).catch((err)=>{
         console.log(err);
+    })
+})
+
+//delete user
+app.get('/deleteuser',(req,res)=>{
+    let id = req.query.deleteId;
+
+    userModel.findByIdAndDelete(id)
+    .then((del)=>{
+        console.log("DATA DELETE..!");
+        return res.redirect("/viewuser")
+    }).catch((err)=>{
+        console.log(err);
+        return false;
     })
 })
 
