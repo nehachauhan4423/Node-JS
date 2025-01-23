@@ -18,11 +18,12 @@
                     <th>Gender</th>
                     <th>Hobby</th>
                     <!-- <th>City</th> -->
+                     <th>Image</th>
                     <th>Action</th>
                 </tr>
             </thead>
             <tbody>
-                <% record.map((val)=>{%>
+                <% record.map((val,index)=>{%>
                     <tr>
                         <td>
                             <%= val.id %>
@@ -41,6 +42,9 @@
                         </td>
                         <td>
                             <%= val?.userhobby %>
+                        </td>
+                        <td>
+                            <img src="<%= val?.image %>" width="100"/>
                         </td>
                         <td>
                             <a href="/edituser?editId=<%= val.id%>">Edit</a> ||

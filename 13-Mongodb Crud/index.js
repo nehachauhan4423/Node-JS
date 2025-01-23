@@ -7,11 +7,29 @@ const app = express();
 const db = require('./config/db')
 
 const path = require('path');
+
 app.set('view engine','ejs');
 
 const userModel = require('./modles/userModels');
 
 app.use(express.urlencoded());
+
+const multer = require('multer');
+
+//file upload start
+const fs = require('fs');
+app.use('/uploads',express.static(path.join(__dirname,'uploads')));
+const st = multer.diskStorage({
+    destination:(req,res,cb)=>{
+        cb(null,'uploads');
+    },
+    filename:(req,res,cb)=>{
+        let uniq = Math.floor(Math.random()*100000);
+        cb(null,`${file.filename}-${uniq}`)
+    }
+})
+const imgeUpload = multer({storage:st}).single('image');
+// file upload end 
 
 app.get('/',(req,res)=>{
     return res.render('Add');
@@ -52,6 +70,18 @@ app.get('/viewuser',(req,res)=>{
     })
 })
 
+//delete user
+app.get('/deleteuser',(req,res)=>{
+    let id = req.query.deleteId;
+    userModel.findByIdAndDelete(id)
+    .then((del)=>{
+        console.log("DATA DELETE..!");
+        return res.redirect("/viewuser")
+    }).catch((err)=>{
+        console.log(err);
+        return false;
+    })
+})
 
 //edit user
 app.get('/edituser',(req,res)=>{
@@ -83,19 +113,6 @@ app.post('/updateuser',(req,res)=>{
     })
 })
 
-//delete user
-app.get('/deleteuser',(req,res)=>{
-    let id = req.query.deleteId;
-
-    userModel.findByIdAndDelete(id)
-    .then((del)=>{
-        console.log("DATA DELETE..!");
-        return res.redirect("/viewuser")
-    }).catch((err)=>{
-        console.log(err);
-        return false;
-    })
-})
 
 app.listen(port,(err)=>{
     if (err) {
