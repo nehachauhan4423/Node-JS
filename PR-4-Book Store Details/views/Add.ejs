@@ -3,46 +3,101 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Add a New Book</title>
+ 
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            width: 100%;
+            max-width: 500px;
+            margin: 50px auto;
+            background: #fff;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            padding: 20px;
+        }
+        h2 {
+            text-align: center;
+            color: #5c3a71;
+            margin-bottom: 20px;
+        }
+        form {
+            width: 100%;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        td {
+            padding: 10px;
+        }
+        input[type="text"], input[type="number"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        input[type="submit"] {
+            background-color: #5c3a71;
+            color: #fff;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            width: 100%;
+        }
+        input[type="submit"]:hover {
+            background-color: #462a58;
+        }
+        .view-users {
+            display: block;
+            text-align: center;
+            margin-top: 15px;
+            color: #5c3a71;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        .view-users:hover {
+            color: #462a58;
+            /* text-decoration: underline; */
+        }
+    </style>
 </head>
-
-
 <body>
-   <div align="center">
+    <div class="container">
         <h2>Add a New Book</h2>
         <form method="post" action="/adduser">
-            <table border="1">
+            <table>
                 <tr>
-                    <td><strong>Name :</strong></td>
-                    <td>
-                        <input type="text" name="name" placeholder="Enter Book Name" required>
-                    </td>
+                    <td><label for="name"><strong>Name:</strong></label></td>
+                    <td><input type="text" id="name" name="name" placeholder="Enter Book Name" required></td>
                 </tr>
                 <tr>
-                    <td><strong>Description :</strong></td>
-                    <td>
-                        <input type="text" name="description" placeholder="Enter Book Description" required>
-                    </td>
+                    <td><label for="description"><strong>Description:</strong></label></td>
+                    <td><input type="text" id="description" name="description" placeholder="Enter Book Description" required></td>
                 </tr>
                 <tr>
-                    <td><strong>Price :</strong></td>
-                    <td>
-                        <input type="number" name="price" placeholder="Enter Book Price" required>
-                    </td>
+                    <td><label for="price"><strong>Price:</strong></label></td>
+                    <td><input type="number" id="price" name="price" placeholder="Enter Book Price" required></td>
                 </tr>
                 <tr>
-                    <td><strong>Author:</strong></td>
-                    <td>
-                        <input type="text" name="author" placeholder="Enter Author Name" required>
-                    </td>
+                    <td><label for="author"><strong>Author:</strong></label></td>
+                    <td><input type="text" id="author" name="author" placeholder="Enter Author Name" required></td>
                 </tr>
                 <tr>
-                    <td></td>
-                    <td><input type="submit" value="Submit"></td>
+                    <td colspan="2"><input type="submit" value="Submit"></td>
                 </tr>
             </table>
         </form>
-        <a href="/viewuser">View Users</a>
+        <a class="view-users" href="/viewuser">View Users</a>
     </div>
 </body>
 </html>
