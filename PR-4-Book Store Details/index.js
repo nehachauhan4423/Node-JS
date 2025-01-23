@@ -21,13 +21,12 @@ app.get('/',(req,res)=>{
 
 //add user
 app.post('/adduser',(req,res)=>{
-    const {name,description,price,author,gender} = req.body;
+    const {name,description,price,author} = req.body;
     userModel.create({
         username: name,
         userdescription :description,
         userprice :price,
         userauthor:author,
-        usergender :gender
        
     }).then((record)=>{
         console.log(record);

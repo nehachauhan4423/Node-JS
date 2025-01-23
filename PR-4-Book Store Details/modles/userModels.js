@@ -12,10 +12,6 @@ const userSchema = mongoose.Schema({
         type: String,
         required: true
     },
-    usergender: {
-        type: String,
-        required: true
-    },
     userauthor:{
         type: String,
         required: true
