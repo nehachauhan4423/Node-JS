@@ -6,6 +6,52 @@
     <title>Document</title>
 </head>
 <body>
-   <h1>Crud-View Page</h1> 
+   <h1>VIEW RECORD</h1>
+   <div>
+    <table>
+        <thead>
+            <tr>
+                <td>ID</td>
+                <td>Name</td>
+                <td>Email</td>
+                <td>Password</td>
+                <td>Gender</td>
+                <td>Hobby</td>
+                <td>City</td>
+                <td>Image</td>
+            </tr>
+        </thead>
+        <tbody>
+            <% record.map((val,index)=>{ %>
+                <tr>
+                    <td>
+                        <% val.id %>
+                    </td>
+                    <td>
+                        <% val.name %>
+                    </td>
+                    <td>
+                        <% val.email %>
+                    </td>
+                    <td>
+                        <% val.password %>
+                    </td>
+                    <td>
+                        <% val.gender %>
+                    </td>
+                    <td>
+                        <% val.hobby %>
+                    </td>
+                    <td>
+                        <% val.city %>
+                    </td>
+                    <td>
+                        <% val. %>
+                    </td>
+                </tr>
+            })
+        </tbody>
+    </table>
+   </div> 
 </body>
 </html>

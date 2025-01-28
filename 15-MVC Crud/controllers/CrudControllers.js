@@ -1,11 +1,40 @@
-const addPage = (req,res) =>{
+const addPage = (req, res) => {
     return res.render('crud/add')
 }
 
-const viewPage = (req,res)=>{
-    return res.render('crud/view')
+const viewPage = async (req, res) => {
+    try {
+        let allrecord = await UserModel.find({});
+        return res.render('crud/view', {
+            record: allrecord
+        });
+    } catch (err) {
+        console.log(err);
+        return false
+    }
 }
 
+const insertRecord = async (req, res) => {
+    try {
+        const { name, email, password, gender, hobby, city } = req.body;
+        await UserModel.create({
+            name: name,
+            email: email,
+            password: password,
+            gender: gender,
+            hobby: hobby,
+            city: city,
+            image: req?.file?.path
+        })
+        console.log("USER ADD");
+        return res.redirect('/crud');
+    } catch (err) {
+        console.log(err);
+        return false
+    }
+}
 module.exports ={
-    addPage,viewPage
+    addPage,
+    viewPage,
+    insertRecord
 }
