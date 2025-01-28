@@ -1,6 +1,6 @@
-const express = require('express');
+const express = require('express')
 
-const port = 9060;
+const port = 9070;
 
 const app = express();
 
@@ -8,117 +8,151 @@ const db = require('./config/db')
 
 const path = require('path');
 
-app.set('view engine','ejs');
+app.set('view engine', 'ejs');
 
-const userModel = require('./modles/userModels');
+const UserModel = require('./modles/UserModel')
 
 app.use(express.urlencoded());
 
 const multer = require('multer');
 
-//file upload start
-const fs = require('fs');
-app.use('/uploads',express.static(path.join(__dirname,'uploads')));
+//file upload start //
+const fs = require('fs')
+
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')))
+
 const st = multer.diskStorage({
-    destination:(req,res,cb)=>{
-        cb(null,'uploads');
+    destination: (req, res, cb) => {
+        cb(null, 'uploads');
     },
-    filename:(req,res,cb)=>{
-        let uniq = Math.floor(Math.random()*100000);
-        cb(null,`${file.filename}-${uniq}`)
+    filename: (req, res, cb) => {
+        let uniq = Math.floor(Math.random() * 100000);
+        cb(null, `${file.filename}-${uniq}`);
     }
 })
-const imgeUpload = multer({storage:st}).single('image');
-// file upload end 
+const imageUpload = multer({ storage: st }).single('image');
+//file upload end //
 
-app.get('/',(req,res)=>{
-    return res.render('Add');
+app.get('/', (req, res) => {
+    return res.render('add');
 })
-
-
-
-//add user
-app.post('/adduser',(req,res)=>{
-    const {name,email,password,gender,hobby} = req.body;
-    userModel.create({
+app.post('/adduser', imageUpload, (req, res) => {
+    const { name, email, password, gender, hobby, city } = req.body;
+    UserModel.create({
         username: name,
-        useremail :email,
-        userpassword :password,
-        usergender :gender,
-        userhobby :hobby
-    }).then((record)=>{
-        console.log(record);
-        console.log("USER CREATE..!");
-        return res.redirect('/')
-    }).catch((err)=>{
-        console.log(err);
-        return false;
-    })
-})
-
-
-// view user
-app.get('/viewuser',(req,res)=>{
-    userModel.find({})
-    .then((record)=>{
-        return res.render('view',{
-            record
-        })
-    }).catch((err)=>{
-        console.log(err);
-        return false;
-    })
-})
-
-//delete user
-app.get('/deleteuser',(req,res)=>{
-    let id = req.query.deleteId;
-    userModel.findByIdAndDelete(id)
-    .then((del)=>{
-        console.log("DATA DELETE..!");
-        return res.redirect("/viewuser")
-    }).catch((err)=>{
-        console.log(err);
-        return false;
-    })
-})
-
-//edit user
-app.get('/edituser',(req,res)=>{
-    let id = req.query.editId;
-
-    userModel.findById(id)
-    .then((single)=>{
-        return res.render('edit',{
-            single
-        })
-    }).catch((err)=>{
-        console.log(err);
-        return false;
-    })
-})
-
-//update user
-app.post('/updateuser',(req,res)=>{
-    const {editId,name,email,password} = req.body;
-    userModel.findByIdAndUpdate(editId,{
-        username :name,
-        useremail:email,
+        usermail: email,
         userpassword: password,
-    }).then((editdata)=>{
-        console.log("DATA UPDATE..!");
-        return res.redirect("/viewuser")
-    }).catch((err)=>{
+        usergender: gender,
+        userhobby: hobby,
+        usercity: city,
+        userimage: req.file?.path
+    }).then((record) => {
+        console.log(record);
+        console.log("USER CREATED");
+        return res.redirect('/');
+    }).catch((err) => {
         console.log(err);
+        return false;
     })
 })
+app.get('/viewuser', (req, res) => {
+    UserModel.find({})
+        .then((record) => {
+            return res.render('view', {
+                allrecord: record
+            })
+        }).catch((err) => {
+            console.log(err);
+            return false;
+        })
+})
 
+app.get('/deleteuser', (req, res) => {
+    let id = req.query.did;
+    UserModel.findById(id)
+        .then((singlerow) => {
+            fs.unlinkSync(singlerow?.image)
+        }).catch((err) => {
+            console.log(err);
+            return false
+        })
+    UserModel.findByIdAndDelete(id)
+        .then((data) => {
+            console.log("RECORD DELTED");
+            return res.redirect('/viewuser')
+        }).catch((err) => {
+            console.log(err);
+            return false
+        })
+})
+app.get('/edituser', (req, res) => {
+    let id = req.query.eid;
+    UserModel.findById(id)
+        .then((single) => {
+            return res.render('edit', {
+                single
+            })
+        }).catch((err) => {
+            console.log(err);
+            return false
+        })
+})
+
+app.post('/updateuser', imageUpload, (req, res) => {
+    const { editid, name, emai, password, gender, hobby, city } = req.body;
+    if (req.file) {
+        //old image remove
+        UserModel.findById(editid)
+            .then((singlerow) => {
+                fs.unlinkSync(singlerow?.image)
+                UserModel.findByIdAndUpdate(editid, {
+                    username: name,
+                    useremail: email,
+                    userpassword: password,
+                    usergender: gender,
+                    userhobby: hobby,
+                    usercity: city,
+                    userimage: req.file?.path
+                }).then((user)=>{
+                    console.log('USER UPDATED');
+                    return res.redirect('/viewuser');
+                }).catch((err)=>{
+                    console.log(err);
+                    return false;
+                })
+            }).catch((err)=>{
+                console.log(err);
+                return false
+            })
+    }else{
+        UserModel.findById(editid)
+        .then((singlerow)=>{
+            UserModel.findByIdAndUpdate(editid,{
+                username: name,
+                useremail: email,
+                userpassword: password,
+                usergender: gender,
+                userhobby: hobby,
+                usercity: city,
+                userimage: singlerow?.image
+            }).then((user)=>{
+                console.log('USER UPDATED');
+                return res.redirect('/viewuser')
+            }).catch((err)=>{
+                console.log(err);
+                return false;
+            })
+        }).catch((err)=>{
+            console.log(err);
+            return false;
+        })
+    }
+})
 
 app.listen(port,(err)=>{
-    if (err) {
+    if(err){
         console.log(err);
-        return false;
+        return false
     }
-    console.log(`server start on port ${port}`);
-    
+    console.log(`server start on port -${port}`);
 })
