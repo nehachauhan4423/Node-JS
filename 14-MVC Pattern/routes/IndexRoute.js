@@ -7,5 +7,7 @@ routes.get('/',(req,res)=>{
 })
 
 routes.use('/crud',require('./crudRoute'));
+routes.use('/product',require('./productRoute'))
+
 
 module.exports = routes;
