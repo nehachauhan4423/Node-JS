@@ -10,7 +10,7 @@ const path = require('path');
 
 app.set('view engine', 'ejs');
 
-const UserModel = require('./modles/UserModel')
+const UserModel = require('./models/UserModel')
 
 app.use(express.urlencoded());
 
@@ -21,16 +21,18 @@ const fs = require('fs')
 
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')))
 
+
 const st = multer.diskStorage({
-    destination: (req, res, cb) => {
+    destination: (req, file, cb) => {
         cb(null, 'uploads');
     },
-    filename: (req, res, cb) => {
+    filename: (req, file, cb) => {
         let uniq = Math.floor(Math.random() * 100000);
-        cb(null, `${file.filename}-${uniq}`);
+        cb(null, `${uniq}-${file.originalname}`);
     }
-})
+});
 const imageUpload = multer({ storage: st }).single('image');
+
 //file upload end //
 
 app.get('/', (req, res) => {
@@ -38,6 +40,8 @@ app.get('/', (req, res) => {
 })
 app.post('/adduser', imageUpload, (req, res) => {
     const { name, email, password, gender, hobby, city } = req.body;
+    console.log(`data add`);
+    
     UserModel.create({
         username: name,
         usermail: email,
@@ -49,7 +53,7 @@ app.post('/adduser', imageUpload, (req, res) => {
     }).then((record) => {
         console.log(record);
         console.log("USER CREATED");
-        return res.redirect('/');
+        return res.redirect('/viewuser');
     }).catch((err) => {
         console.log(err);
         return false;
@@ -99,7 +103,7 @@ app.get('/edituser', (req, res) => {
 })
 
 app.post('/updateuser', imageUpload, (req, res) => {
-    const { editid, name, emai, password, gender, hobby, city } = req.body;
+    const { editid, name, email, password, gender, hobby, city } = req.body;
     if (req.file) {
         //old image remove
         UserModel.findById(editid)

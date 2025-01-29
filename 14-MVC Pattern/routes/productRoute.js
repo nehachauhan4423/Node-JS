@@ -7,4 +7,4 @@ const { productAdd, productView } = require('../controllers/ProductController');
 routes.get('/',productAdd)
 routes.get('/productview',productView)
 
-module.export = routes
+module.exports = routes
