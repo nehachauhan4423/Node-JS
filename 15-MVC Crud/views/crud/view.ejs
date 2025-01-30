@@ -1,57 +1,48 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
+
 <body>
-   <h1>VIEW RECORD</h1>
-   <div>
-    <table>
-        <thead>
-            <tr>
-                <td>ID</td>
-                <td>Name</td>
-                <td>Email</td>
-                <td>Password</td>
-                <td>Gender</td>
-                <td>Hobby</td>
-                <td>City</td>
-                <td>Image</td>
-            </tr>
-        </thead>
-        <tbody>
-            <% record.map((val,index)=>{ %>
+    <div align="center">
+        <h1>Hiee view page</h1>
+        <table border="2">
+            <thead>
                 <tr>
+                    <th>Id</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Password</th>
+                    <th>Gender</th>
+                    <th>Hobby</th>
+                    <th>City</th>
+                    <th>File</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% record.map((val, index) => { %>
+                <tr>
+                    <td><%= val.id %></td>
+                    <td><%= val.name %></td>
+                    <td><%= val.email %></td>
+                    <td><%= val.password %></td>
+                    <td><%= val.gender %></td>
+                    <td><%= val.hobby %></td>
+                    <td><%= val.city %></td>
                     <td>
-                        <% val.id %>
-                    </td>
-                    <td>
-                        <% val.name %>
-                    </td>
-                    <td>
-                        <% val.email %>
-                    </td>
-                    <td>
-                        <% val.password %>
-                    </td>
-                    <td>
-                        <% val.gender %>
-                    </td>
-                    <td>
-                        <% val.hobby %>
-                    </td>
-                    <td>
-                        <% val.city %>
-                    </td>
-                    <td>
-                        <% val. %>
+                        <img src="<%= val.image %>" width="120">
                     </td>
                 </tr>
-            })
-        </tbody>
-    </table>
-   </div> 
+                <% }) %>
+            </tbody>
+        </table>
+
+        <a href="/crud/">view</a>
+    </div>
 </body>
+
 </html>

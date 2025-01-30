@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost/MVC-crud');
+mongoose.connect('mongodb://localhost/mvc-crud');
 
 const db = mongoose.connection;
 

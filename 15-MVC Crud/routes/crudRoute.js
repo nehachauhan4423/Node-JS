@@ -1,23 +1,25 @@
-const express = require('express');
+const express = require('express')
 
 const routes = express.Router()
 
 const multer = require('multer');
-const { viewPage, addPage, insertRecord } = require('../controllers/CrudControllers');
+const { addPage, viewPage, insertRecord } = require('../controllers/crudController');
 
-routes.get('/',viewPage)
-routes.get('/add',addPage)
+routes.get('/',addPage)
+routes.get('/view',viewPage)
 
 const st = multer.diskStorage({
-    destination:(req,res,cb)=>{
+    destination:(req,res,cb) => {
         cb(null,'uploads')
     },
-    filename:(req,file,cb)=>{
-        const uniq = Math.floor(Math.random()*10000);
-        cb(null,`${file.filename}-${uniq}`)
+    filename : (req,file,cb) => {
+        const uniq = Math.floor(Math.random() *10000);
+        cb(null,`${file,fieldname}-${uniq}`)
     }
 })
 
-const fileUpload = multer({storage:st}).single('avatar')
+const fileUpload = multer({storage:st}).single('avatar');
 
-routes.post('/insertrecord',fileUpload,insertRecord);
+routes.post('/insertRecord',fileUpload,insertRecord)
+
+module.exports = routes
