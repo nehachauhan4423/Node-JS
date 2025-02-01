@@ -9,7 +9,7 @@ const st = multer.diskStorage({
         cb(null, 'uploads')
     },
     filename: (req, file, cb) => {
-        const uniq = Math.floor(Math.random() * 10000000);
+        const uniq = Math.floor(Math.random() * 10000);
         cb(null, `${file.fieldname}-${uniq}`)
     }
 })

@@ -7,28 +7,18 @@ const userSchema = mongoose.Schema({
         required: true,
     },
 
-    email: {
+    discription: {
         type: String,
         required: true,
     },
 
-    password: {
+    price: {
         type: String,
         required: true,
-    },
-
-    gender: {
-        type: String,
-        required: true
     },
 
     hobby: {
         type: Array,
-        required: true
-    },
-
-    city: {
-        type: String,
         required: true
     },
 
@@ -38,7 +28,6 @@ const userSchema = mongoose.Schema({
     }
 
 })
-
 const users = mongoose.model("user", userSchema);
 
 module.exports = users

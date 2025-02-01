@@ -1,6 +1,6 @@
 const express = require('express');
 
-const port= 7080;
+const port= 7050;
 
 const app = express();
 
@@ -17,11 +17,9 @@ app.use(express.urlencoded());
 app.use('/', require('./routes/indexRoute'));
 
 app.listen(port, (err) => {
-
     if (err) {
         console.log(err);
         return false;
     }
     console.log(`server is start on port :- ${port}`);
-
 })
