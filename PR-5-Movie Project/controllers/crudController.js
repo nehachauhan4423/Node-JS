@@ -20,12 +20,12 @@ const viewPage = async (req, res) => {
 
 const insertRecord = async (req, res) => {
     try {
-        const { name, discription, price, hobby } = req.body;
+        const { name, discription, price, type } = req.body;
         await UserModel.create({
             name: name,
             discription: discription,
             price: price,
-            hobby: hobby,
+            type: type,
             image: req?.file?.path
         })
         console.log("USER ADD..!");
@@ -39,8 +39,8 @@ const insertRecord = async (req, res) => {
 const deleteRecord = async (req, res) => {
     try {
         let id = req.query.id;
-        let singel = await UserModel.findById(id);
-        fs.unlinkSync(singel?.image);
+        let single = await UserModel.findById(id);
+        fs.unlinkSync(single?.image);
         await UserModel.findByIdAndDelete(id);
         return res.redirect('/crud');
     } catch (err) {
