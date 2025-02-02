@@ -28,7 +28,7 @@ const insertRecord = async (req, res) => {
             hobby: hobby,
             image: req?.file?.path
         })
-        console.log("user add");
+        console.log("USER ADD..!");
         return res.redirect('/crud')
     } catch (err) {
         console.log(err);

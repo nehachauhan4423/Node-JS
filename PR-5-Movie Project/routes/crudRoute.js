@@ -14,7 +14,7 @@ const st = multer.diskStorage({
     }
 })
 
-const fileUpload = multer({ storage: st }).single('avatar');
+const fileUpload = multer({ storage: st }).single('upload');
 
 const { addPage, viewPage, insertRecord, deleteRecord } = require('../controllers/crudController');
 
