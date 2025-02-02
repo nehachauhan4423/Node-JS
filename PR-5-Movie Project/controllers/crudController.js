@@ -20,12 +20,12 @@ const viewPage = async (req, res) => {
 
 const insertRecord = async (req, res) => {
     try {
-        const { name, discription, price, type } = req.body;
+        const { name, discription, price, hobby } = req.body;
         await UserModel.create({
             name: name,
             discription: discription,
             price: price,
-            type: type,
+            hobby: hobby,
             image: req?.file?.path
         })
         console.log("USER ADD..!");

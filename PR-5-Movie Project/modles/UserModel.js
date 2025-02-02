@@ -17,7 +17,7 @@ const userSchema = mongoose.Schema({
         required: true,
     },
 
-    type: {
+    hobby: {
         type: Array,
         required: true
     },
@@ -30,4 +30,4 @@ const userSchema = mongoose.Schema({
 })
 const users = mongoose.model("user", userSchema);
 
-module.exports = users;
+module.exports = users
