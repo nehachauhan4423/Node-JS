@@ -1,27 +1,36 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css">
     <title>Add Movie</title>
     <style>
         body {
-            font-family: sans-serif;
-            background: url('https://assets.nflxext.com/ffe/siteui/vlv3/fb5cb900-0cb6-4728-beb5-579b9af98fdd/web/IN-en-20250127-TRIFECTA-perspective_cf66f5a3-d894-4185-9106-5f45502fc387_large.jpg') no-repeat center center/cover;
-            color: #E2DFD0;
-            text-align: center;
-            padding-top: 50px;
+            margin: 0;
         }
 
-        .container {
-            background: #2D1B2E; /* Dark Wine */
+        .form-main-s {
+            font-family: sans-serif;
+            background: url('https://wallpapercave.com/wp/wp12380208.jpg');
+            background-repeat: no-repeat;
+            background-size: cover;
+            color: #E2DFD0;
+            text-align: center;
+            padding: 100px 0;
+            margin: 0;
+        }
+
+        .form-main {
+            background: #2D1B2E;
             padding: 30px;
             border-radius: 15px;
             width: 45%;
             margin: auto;
             box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.8);
             transition: 0.3s ease-in-out;
-            border: 2px solid #9A506D; /* Subtle Border */
+            border: 2px solid #9A506D;
         }
 
         h2 {
@@ -128,50 +137,350 @@
         }
 
         a:hover {
+            color: #E8B4B8;
             text-shadow: 0px 0px 10px #f8f8f8;
+        }
+
+
+
+        /* Slider Start */
+        .slider-images {
+            padding: 100px 0;
+            background: #2D1B2E;
+            text-align: center;
+        }
+
+        .slider-images-main {
+            display: flex;
+            gap: 30px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .slider-item {
+            position: relative;
+            width: 190px;
+            overflow: hidden;
+            border-radius: 10px;
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+            cursor: pointer;
+        }
+
+        /* Image Styling */
+        .slider-item img {
+            width: 100%;
+            border-radius: 10px;
+            display: block;
+            transition: transform 0.3s ease-in-out, filter 0.3s ease-in-out;
+        }
+
+        /* Hover Effect */
+        .slider-item:hover {
+            transform: scale(1.1) translateY(-5px);
+            /* Zoom and lift */
+            box-shadow: 0 10px 30px rgba(255, 255, 255, 0.23);
+            /* Soft shadow */
+            transition: 0.9s;
+        }
+
+        /* Glowing Border */
+        .slider-item:hover img {
+            filter: brightness(1.1);
+            /* Slight brightness increase */
+            transition: 0.9s;
+        }
+
+        .slider-item:hover::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 2px solid rgb(255, 255, 255);
+            /* Glowing border */
+            border-radius: 10px;
+            pointer-events: none;
+            transition: all 0.3s ease;
+            transition: 0.9s;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .slider-item {
+                width: 140px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .slider-item {
+                width: 100px;
+            }
+        }
+
+        .faq {
+            background-color: #C47A8D;
+        }
+
+        .faq-main {
+            background-color: transparent;
+            color: #f8f8f8;
+        }
+
+        /* FAQ Section */
+        .faq {
+            background-color: #2D1B2E;
+            /* Black background */
+            color: #fff;
+            /* White text color */
+            padding: 70px 0;
+
+        }
+
+        /* Accordion Component Styling */
+        .accordion-button {
+            background-color: #333;
+            /* Dark background for accordion button */
+            color: #fff;
+            /* White text color for accordion button */
+            border: none;
+            /* Remove default border */
+            transition: background-color 0.3s ease-in-out;
+        }
+
+        .accordion-button:focus {
+            box-shadow: none;
+            /* Remove focus outline */
+        }
+
+        /* Hover effect for the accordion button */
+        .accordion-button:hover {
+            background-color: #754256;
+            /* Lighter dark background on hover */
+        }
+
+        /* Styling for expanded accordion body */
+        .accordion-body {
+            background-color: #2D1B2E;
+            /* Slightly darker background for body */
+            color: #fff;
+            /* White text for accordion content */
+            padding: 20px;
+        }
+
+        /* Accordion item borders */
+        .accordion-item {
+            border: none;
+            /* Remove borders around each accordion item */
+            margin-bottom: 10px;
+            /* Add some space between items */
+        }
+
+        /* Accordion active item (expanded state) */
+        .accordion-button:not(.collapsed) {
+            background-color: #5f3445;
+            /* Darker background when expanded */
+            color: #fff;
+        }
+
+        .accordion-header {
+            background-color: transparent;
+            /* Dark background for the header */
+            border-radius: 5px;
+            /* Round the corners for the header */
+        }
+
+        .accordion-header button {
+            font-size: 27px;
+            /* Adjust font size */
         }
     </style>
 </head>
+
 <body>
+    <!-- form start  -->
+    <div class="form-main-s">
+        <!-- <div class="row"> -->
+        <div class="container">
+            <div class="col-12">
+                <div class="form-main">
+                    <h2>Add Movie</h2>
+                    <form action="/crud/insertrecord" method="post" enctype="multipart/form-data">
 
-    <div class="container">
-        <h2>Add Movie</h2>
-        <form action="/crud/insertrecord" method="post" enctype="multipart/form-data">
-            
-            <div class="form-group">
-                <label for="name">Movie Name</label>
-                <input type="text" id="name" name="name" placeholder="Enter Movie Name">
-            </div>
+                        <div class="form-group">
+                            <label for="name">Movie Name</label>
+                            <input type="text" id="name" name="name" placeholder="Enter Movie Name">
+                        </div>
 
-            <div class="form-group">
-                <label for="description">Movie Description</label>
-                <input type="text" id="description" name="discription" placeholder="Enter Description">
-            </div>
+                        <div class="form-group">
+                            <label for="description">Movie Description</label>
+                            <input type="text" id="description" name="discription" placeholder="Enter Description">
+                        </div>
 
-            <div class="form-group">
-                <label for="price">Movie Price</label>
-                <input type="number" id="price" name="price" placeholder="Enter Price">
-            </div>
+                        <div class="form-group">
+                            <label for="price">Movie Price</label>
+                            <input type="number" id="price" name="price" placeholder="Enter Price">
+                        </div>
 
-            <div class="form-group">
-                <label>Movie Type</label>
-                <div class="checkbox-group">
-                    <label><input type="checkbox" name="hobby" value="Horror"> Horror</label>
-                    <label><input type="checkbox" name="hobby" value="Action"> Action</label>
-                    <label><input type="checkbox" name="hobby" value="Comedy"> Comedy</label>
-                    <label><input type="checkbox" name="hobby" value="History"> History</label>
+                        <div class="form-group">
+                            <label>Movie Type</label>
+                            <div class="checkbox-group">
+                                <label><input type="checkbox" name="hobby" value="Horror"> Horror</label>
+                                <label><input type="checkbox" name="hobby" value="Action"> Action</label>
+                                <label><input type="checkbox" name="hobby" value="Comedy"> Comedy</label>
+                                <label><input type="checkbox" name="hobby" value="History"> History</label>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="upload">Movie Image</label>
+                            <input type="file" id="upload" name="upload">
+                        </div>
+
+                        <input type="submit" value="Add Movie">
+                    </form>
+                    <a href="/crud">View All Movies</a>
                 </div>
             </div>
-
-            <div class="form-group">
-                <label for="upload">Movie Image</label>
-                <input type="file" id="upload" name="upload">
-            </div>
-
-            <input type="submit" value="Add Movie">
-        </form>
-        <a href="/crud">View All Movies</a>
+        </div>
     </div>
+    <!-- form end  -->
 
+
+    <!-- Slider Start -->
+    <div class="slider-images">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-12">
+                    <div class="slider-images-main d-flex justify-content-center flex-wrap">
+
+                        <div class="slider-item">
+                            <img src="https://occ-0-3776-2164.1.nflxso.net/dnm/api/v6/mAcAr9TxZIVbINe88xb3Teg5_OA/AAAABcBQAzZgCcAJyLKGf0x3EjJHKr1h1oCRUQDfVspaHXampP-RjiOkIRlWBz7ViFOvUI1EdPSRcxoOPmB7paPLi52W4OmQZJ4NDMQ.webp?r=a92"
+                                alt="">
+                        </div>
+
+                        <div class="slider-item">
+                            <img src="https://occ-0-3776-2164.1.nflxso.net/dnm/api/v6/mAcAr9TxZIVbINe88xb3Teg5_OA/AAAABTsIHqmKvuiJaunFg-3M7eRlEBPik8Un-eqTK-od9x48LzeGITagPm82bIopTRvyhIEMehQNdXN2qfj0AVpDTMhftqYStaCieJdbO-jfhSkFUVGBs9eYkpkjdzOj_UCKZi53.webp?r=06c"
+                                alt="">
+                        </div>
+
+                        <div class="slider-item">
+                            <img src="https://occ-0-3776-2164.1.nflxso.net/dnm/api/v6/mAcAr9TxZIVbINe88xb3Teg5_OA/AAAABScSAnI47ovoETcYBhKCILXN91D3uCQTeh3aG24EF1iRpP7YNh86hK0eF8JkfKAzdNYZcjcvLy4UB_BpSQgg2AcvjjRMpP6A8C0.webp?r=4bd"
+                                alt="">
+                        </div>
+
+                        <div class="slider-item">
+                            <img src="https://occ-0-3776-2164.1.nflxso.net/dnm/api/v6/mAcAr9TxZIVbINe88xb3Teg5_OA/AAAABZJH5UgOhy6NyDoAfEigLLNPRc_cw2W7Gz87mbTfvRDHbr1fLHhrPpcKQdXnREMcUcZbnX8_ZK8mYS1CgW8B4NXHcTA-grl4BSpgtPn-jMwZpsh7Kk2XcJArjUbsdp0u5JLX.webp?r=e02"
+                                alt="">
+                        </div>
+
+                        <div class="slider-item">
+                            <img src="https://occ-0-3776-2164.1.nflxso.net/dnm/api/v6/mAcAr9TxZIVbINe88xb3Teg5_OA/AAAABVE91f6aWyMar1MbOlxTXz8tSOaRNfaxo1D_4gcXoFNjolQxTBRw3mR0zUZ_X7ALDtNQ0TpVTAXCPitJJUUlMbF9Pza5xOeHCrc.webp?r=bf7"
+                                alt="">
+                        </div>
+
+                        <div class="slider-item">
+                            <img src="https://occ-0-3776-2164.1.nflxso.net/dnm/api/v6/mAcAr9TxZIVbINe88xb3Teg5_OA/AAAABXslugEC7_hbc0IGG_Z0tlhJVPbrB3FGKbDqaiPOsXUR3SgblnInyKSjdzOCHraOlqKreRhxpWLj8-RmFoenz5zRv67y4jtKeIhjCuxL6PJh7JEKTBugV26eyhN4WZkrQjWc.webp?r=dfc"
+                                alt="">
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Slider End -->
+
+
+    <!-- FAQ start  -->
+    <div class="faq">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="faq-main">
+                        <div class="accordion accordion-flush" id="accordionFlushExample">
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="flush-headingOne">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                        data-bs-target="#flush-collapseOne" aria-expanded="false"
+                                        aria-controls="flush-collapseOne">
+                                        What is Netflix?
+                                    </button>
+                                </h2>
+                                <div id="flush-collapseOne" class="accordion-collapse collapse"
+                                    aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
+                                    <div class="accordion-body">Netflix is a streaming service that offers a wide
+                                        variety of award-winning TV shows, movies, anime, documentaries and more – on
+                                        thousands of internet-connected devices.
+                                        <br>
+                                        You can watch as much as you want, whenever you want, without a single ad – all
+                                        for one low monthly price. There's always something new to discover, and new TV
+                                        shows and movies are added every week!
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="flush-headingTwo">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                        data-bs-target="#flush-collapseTwo" aria-expanded="false"
+                                        aria-controls="flush-collapseTwo">
+                                        How much does Netflix cost?
+                                    </button>
+                                </h2>
+                                <div id="flush-collapseTwo" class="accordion-collapse collapse"
+                                    aria-labelledby="flush-headingTwo" data-bs-parent="#accordionFlushExample">
+                                    <div class="accordion-body">Watch Netflix on your smartphone, tablet, Smart TV,
+                                        laptop, or streaming device, all for one fixed monthly fee. Plans range from
+                                        ₹149 to ₹649 a month. No extra costs, no contracts.</div>
+                                </div>
+                            </div>
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="flush-headingThree">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                        data-bs-target="#flush-collapseThree" aria-expanded="false"
+                                        aria-controls="flush-collapseThree">
+                                        Where can I watch?
+                                    </button>
+                                </h2>
+                                <div id="flush-collapseThree" class="accordion-collapse collapse"
+                                    aria-labelledby="flush-headingThree" data-bs-parent="#accordionFlushExample">
+                                    <div class="accordion-body">Watch anywhere, anytime. Sign in with your Netflix
+                                        account to watch instantly on the web at netflix.com from your personal computer
+                                        or on any internet-connected device that offers the Netflix app, including smart
+                                        TVs, smartphones, tablets, streaming media players and game consoles.
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- <div class="accordion-item">
+                                <h2 class="accordion-header" id="flush-headingThree">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                        data-bs-target="#flush-collapseThree" aria-expanded="false"
+                                        aria-controls="flush-collapseThree">
+                                        Where can I watch?
+                                    </button>
+                                </h2>
+                                <div id="flush-collapseThree" class="accordion-collapse collapse"
+                                    aria-labelledby="flush-headingThree" data-bs-parent="#accordionFlushExample">
+                                    <div class="accordion-body">Watch anywhere, anytime. Sign in with your Netflix
+                                        account to watch instantly on the web at netflix.com from your personal computer
+                                        or on any internet-connected device that offers the Netflix app, including smart
+                                        TVs, smartphones, tablets, streaming media players and game consoles.
+                                    </div>
+                                </div>
+                            </div> -->
+
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- faq end  -->
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
+
 </html>
