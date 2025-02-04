@@ -13,8 +13,21 @@ const checkAge = (req,res,next) => {
     if (!age || age<18) {
         return res.redirect('/');
     }
-    return next;
+    return next();
 }
+app.get('/',(req,res)=> {
+    return res.render('index');
+})
+app.get('/product',checkAge,(req,res)=>{
+    return res.render('product');
+})
+app.get('/about',checkAge,(req,res)=>{
+    return res.render('about');
+})
+app.get('/contact',checkAge,(req,res)=>{
+    return res.render('contact')
+})
+
 
 app.listen(port,(err) => {
     if (err) {
