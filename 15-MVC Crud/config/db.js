@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-mongoose.connect(`mongodb://localhost/MVC-crud`);
+mongoose.connect(`mongodb://localhost/crud-mvc`);
 
 const db = mongoose.connection;
 
@@ -11,5 +11,5 @@ db.on("connected", (err) => {
     }
     console.log(`DATABASE CONNECTED`);
 })
-module.exports = db;
 
+module.exports = db;

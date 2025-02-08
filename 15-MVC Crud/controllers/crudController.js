@@ -1,4 +1,4 @@
-const UserModel = require('../modles/UserModel');
+const UserModel = require('../models/UserModel');
 
 const fs = require('fs');
 
@@ -20,17 +20,17 @@ const viewPage = async (req, res) => {
 
 const insertRecord = async (req, res) => {
     try {
-        const { name, email, password, gender, hobby } = req.body;
+        const { name, email, password, gender, hobby, city } = req.body;
         await UserModel.create({
             name: name,
             email: email,
             password: password,
             gender: gender,
             hobby: hobby,
-        
+            city: city,
             image: req?.file?.path
         })
-        console.log("user add");
+        console.log("USER ADDED");
         return res.redirect('/crud')
     } catch (err) {
         console.log(err);
@@ -41,8 +41,8 @@ const insertRecord = async (req, res) => {
 const deleteRecord = async (req, res) => {
     try {
         let id = req.query.id;
-        let singel = await UserModel.findById(id);
-        fs.unlinkSync(singel?.image);
+        let single = await UserModel.findById(id);
+        fs.unlinkSync(single?.image);
         await UserModel.findByIdAndDelete(id);
         return res.redirect('/crud');
     } catch (err) {

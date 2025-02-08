@@ -6,6 +6,6 @@ db.on("connected",(err)=>{
         console.log(err);
         return false
     }
-    console.log(`Database is connected`);
+    console.log(`DATABASE CONNECTED`);
 })
 module.exports = db;

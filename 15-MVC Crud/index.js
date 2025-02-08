@@ -1,6 +1,6 @@
 const express = require('express');
 
-const port= 8080;
+const port= 8040;
 
 const app = express();
 
@@ -21,5 +21,5 @@ app.listen(port, (err) => {
         console.log(err);
         return false;
     }
-    console.log(`server is start on port :- ${port}`);
+    console.log(`Server is start :- ${port}`);
 })

@@ -10,9 +10,7 @@
 <body>
     <div align="center">
         <h2>View User</h2>
-
         <table border="1">
-
             <thead>
                 <tr>
                     <td>Id</td>
@@ -28,7 +26,6 @@
             </thead>
 
             <tbody>
-
                 <% record.map((val,index)=>{ %>
                     <tr>
                         <td>
@@ -44,14 +41,14 @@
                             <%= val?.password %>
                         </td>
                         <td>
+                            <%= val?.gender %>
+                        </td>
+                        <td>
                             <%= val?.hobby %>
                         </td>
                         <td>
-                            <%= val?.gender %>
-                        </td>
-                        <!-- <td>
                             <%= val?.city %>
-                        </td> -->
+                        </td>
                         <td>
                             <img src="<%= val?.image %>" width="100">
                         </td>
@@ -60,12 +57,9 @@
                         </td>
                     </tr>
                     <% }) %>
-
             </tbody>
         </table>
-
-        <a href="/crud/add">Add User</a>
-
+        <a href="/crud/add">Add</a>
     </div>
 </body>
 </html>
