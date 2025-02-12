@@ -21,7 +21,7 @@ app.listen(port,(err)=>{
         console.log(err);
         return false;
     }
-    console.log(`server start on port :- ${port}`);
+    console.log(`server start is port :- ${port}`);
 })
 
 
