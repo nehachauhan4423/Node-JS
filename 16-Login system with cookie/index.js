@@ -1,12 +1,13 @@
 const express = require('express');
 
-const port = 8090;
+const port = 8040;
 
 const app = express();
 
 app.set('view engine','ejs');
 
 const db = require('./config/database')
+
 
 const cookieparser = require('cookie-parser');
 
@@ -23,5 +24,3 @@ app.listen(port,(err)=>{
     }
     console.log(`server start is port :- ${port}`);
 })
-
-

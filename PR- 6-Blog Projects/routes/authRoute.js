@@ -1,6 +1,5 @@
 const express = require('express');
 
-
 const { loginPage, registerPage, dashboardPage, aboutPage, productPage, registerUser, loginUser, logoutUser } = require('../controllers/AuthController');
 
 const {checkUserLogin} = require('../middleware/checkUser')
