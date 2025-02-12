@@ -9,7 +9,6 @@ app.set('view engine','ejs');
 const db = require('./config/database')
 
 const cookieparser = require('cookie-parser');
-
 app.use(cookieparser())
 
 app.use(express.urlencoded());
@@ -23,5 +22,3 @@ app.listen(port,(err)=>{
     }
     console.log(`server start on port :- ${port}`);
 })
-
-
