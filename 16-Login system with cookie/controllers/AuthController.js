@@ -1,4 +1,4 @@
-const User = require('../models/UserModel');
+const Users = require('../models/UserModel');
 
 
 const registerPage = (req, res) => {
@@ -17,7 +17,7 @@ const loginPage = (req, res) => {
 const loginUser = async(req,res) => {
     try{
         const {email,password} = req.body;
-        const user = await User.findOne({email:email});
+        const user = await Users.findOne({email:email});
 
         if (!user || user.password != password) {
             console.log('PLEASE ENTER VALID PASS & EMAIL');
@@ -36,7 +36,7 @@ const loginUser = async(req,res) => {
 const registerUser = async (req, res) => {
     try {
         const { name, email, password } = req.body;
-        await User.create({
+        await Users.create({
             name: name,
             email: email,
             password: password
