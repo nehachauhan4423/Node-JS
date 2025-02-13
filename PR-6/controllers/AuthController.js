@@ -1,9 +1,13 @@
 const Users = require('../models/UserModel');
 
+const fs = require('fs')
+
+// registerPage
 const registerPage = (req, res) => {
     return res.render('register');
 }
 
+// loginpage 
 const loginPage = (req, res) => {
     if (req.cookies?.auth) {
         return res.redirect('/dashboard')
@@ -11,6 +15,7 @@ const loginPage = (req, res) => {
     return res.render('login');
 }
 
+// loginuser 
 const loginUser = async (req, res) => {
     try {
         const { email, password } = req.body;
@@ -29,6 +34,7 @@ const loginUser = async (req, res) => {
 
 }
 
+//register user 
 const registerUser = async (req, res) => {
     try {
         const { name, email, password } = req.body;
@@ -45,17 +51,20 @@ const registerUser = async (req, res) => {
     }
 }
 
+// dashboardpage 
 const dashboardPage = (req, res) => {
     return res.render('dashboard')
 }
 
+// addblogpage 
 const addBlogPage = (req, res) => {
-    return res.render('addBlog')
+    return res.render('addblog')
 }
 
+// viewblogpage 
 const viewBlogPage = async(req,res) => {
     try{
-        return res.render('viewBlog',{
+        return res.render('viewblog',{
             allBlogs : await Users.blogUser.find()
         });
     }catch(err) {
@@ -64,38 +73,41 @@ const viewBlogPage = async(req,res) => {
     }
 }
 
+// add data 
 const addBlogUser = async(req,res) => {
     try{
         const {title,description} = req.body;
-        // console.log(title,description);
         await Users.blogUser.create({
             title : title,
             description: description,
             image : req.file?.path
         })
         console.log(`DATA ADD..!`);
-        return res.redirect('/viewblogpage')
+        return res.redirect('/viewblog')
     }catch(err){
         console.log(err);
         return false;
     }
 }
+
+// delete data 
 const deleteBlogUser = async(req,res) => {
     try{
         let single = await Users.blogUser.findById(req.query.delId);
         fs.unlinkSync(single?.image)
         await Users.blogUser.findByIdAndDelete(req.query.delId)
         console.log(`DATA DELETE..!`);
-        return res.redirect('/viewblogpage')
+        return res.redirect('/viewblog')
     }catch(err){
         console.log(err);
         return false
     }
 }
 
+// edit data 
 const editBlogUser = async (req,res) => {
     try{
-        return res.redirect('editBlog',{
+        return res.render('editblog',{
              oneRow : await Users.blogUser.findById(req.query.editId)
         })
     }catch(err){
@@ -104,6 +116,7 @@ const editBlogUser = async (req,res) => {
     }
 }
 
+// update data 
 const updateBlogUser = async(req,res) => {
     try{
         const { editId,title,description} = req.body;
@@ -116,7 +129,7 @@ const updateBlogUser = async(req,res) => {
             image : req.file?.path
             })
             console.log(`DATA UPDATE`);
-            return res.redirect('/viewblogpage')
+            return res.redirect('/viewblog')
         }
     }catch(err){
         console.log(err);
@@ -124,6 +137,8 @@ const updateBlogUser = async(req,res) => {
     }
 }
 
+
+// logoutuser 
 const logoutUser = (req, res) => {
     res.clearCookie('auth');
     return res.redirect('/')

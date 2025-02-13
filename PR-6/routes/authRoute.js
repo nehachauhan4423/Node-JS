@@ -14,8 +14,9 @@ routes.get('/register',registerPage) //register user
 routes.post('/registeruser',registerUser)//ahi vache middleware mukvu nahi
 routes.get('/logoutuser',logoutUser) //logout
 routes.get('/dashboard',checkUserLogin,dashboardPage) // dashboard page
-routes.get('/addblogpage',checkUserLogin,addBlogPage)// add data
-routes.get('/viewblogpage',checkUserLogin,viewBlogPage) // view data
+routes.get('/addblog',checkUserLogin,addBlogPage)// add data
+routes.get('/viewblog',checkUserLogin,viewBlogPage) // view data
+routes.get('/editblog',editBlogUser)
 
 const st = multer.diskStorage({
     destination : (req,res,cb) => {
@@ -31,7 +32,6 @@ const fileUpload = multer({storage : st}).single('image');
 routes.post('/addbloguser',fileUpload,addBlogUser);
 routes.post('/updatebloguser',fileUpload,updateBlogUser)
 routes.get('/deleteuser',deleteBlogUser)
-routes.get('/editbloguser',editBlogUser)
 
 
 module.exports = routes;    

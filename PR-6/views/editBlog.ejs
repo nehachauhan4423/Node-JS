@@ -6,6 +6,33 @@
     <title>Document</title>
 </head>
 <body>
-    <h2>Edit papge</h2>
+
+    <div>
+        <form action="/updatebloguser" method="post" enctype="multipart/form-data">
+            <input type="hidden" name="editId" value="<%= oneRow?.id %>">
+            <tr>
+                <td>Title</td>
+                <td>
+                    <input type="text" name="title" value="<%= oneRow?.title %>">
+                </td>
+            </tr>
+            <tr>
+                <td>Description</td>
+                <td>
+                    <input type="text" name="description" value="<%= oneRow?.description %>">
+                </td>
+            </tr>
+            <tr>
+                <td>Image Upload</td>
+                <td>
+                    <input type="file" name="image">
+                    <img src="<%= oneRow?.image %>" alt="">
+                </td>
+            </tr>
+            <button type="submit" >Update Blog</button>
+        </form>
+        <a href="/viewblog">View Blog</a>
+    </div>
+
 </body>
 </html>
