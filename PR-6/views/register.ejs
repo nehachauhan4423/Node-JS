@@ -1,43 +1,3 @@
-<!-- <!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-
-<body>
-    <div align="center">
-        <h1>Register User</h1>
-        <form action="/registeruser" method="post">
-            <table border="1">
-                <tr>
-                    <td>Name :- </td>
-                    <td><input type="text" name="name"></td>
-                </tr>
-                <tr>
-                    <td>Email :- </td>
-                    <td><input type="text" name="email"></td>
-
-                </tr>
-                <tr>
-                    <td>Password :- </td>
-                    <td><input type="text" name="password"></td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td> <input type="submit"></td>
-                </tr>
-            </table>
-        </form>
-        <a href="/">Login</a>
-    </div>
-</body>
-
-</html> -->
-
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -51,64 +11,65 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: "Arial", sans-serif;
+            font-family: "Poppins", sans-serif;
         }
 
-        /* Full Page Centering */
+        /* Body Styling */
         body {
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
-            background-color: #f9f9f9;
+            background-color: #fff6da66;
         }
 
         /* Register Card */
         .register-container {
-            width: 380px;
+            width: 400px;
             background: white;
-            padding: 30px;
-            border-radius: 12px;
-            box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.15);
+            padding: 35px;
+            border-radius: 15px;
+            box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.2);
             text-align: center;
-            border-top: 5px solid #7d5243;
+            border-top: 6px solid #5A3D2E;
         }
 
         /* Header */
         .register-container h1 {
-            color: #7d5243;
-            margin-bottom: 20px;
-            font-size: 24px;
-            font-weight: bold;
+            color: #5A3D2E;
+            margin-bottom: 25px;
+            font-size: 26px;
+            font-weight: 600;
         }
 
         /* Form Group */
         .form-group {
-            margin-bottom: 20px;
+            margin-bottom: 18px;
             text-align: left;
         }
 
         label {
             display: block;
-            font-weight: bold;
-            color: #7d5243;
-            margin-bottom: 5px;
+            font-weight: 500;
+            color: #5A3D2E;
+            margin-bottom: 6px;
+            font-size: 15px;
         }
 
         input {
             width: 100%;
             padding: 12px;
-            border: 2px solid #7d5243;
-            border-radius: 8px;
+            border: 2px solid #d1c4b9;
+            border-radius: 10px;
             font-size: 16px;
             color: #333;
             outline: none;
-            transition: 0.3s;
+            transition: all 0.3s ease;
         }
 
         input:focus {
-            border-color: #5a3d2e;
-            box-shadow: 0 0 5px rgba(125, 82, 67, 0.4);
+            border-color: #5A3D2E;
+            box-shadow: 0 0 6px rgba(90, 61, 46, 0.3);
         }
 
         /* Button */
@@ -116,40 +77,42 @@
             width: 100%;
             padding: 12px;
             border: none;
-            border-radius: 8px;
-            background-color: #7d5243;
+            border-radius: 10px;
+            background: #5A3D2E;
             color: white;
             font-size: 18px;
-            font-weight: bold;
+            font-weight: 600;
             cursor: pointer;
-            transition: 0.3s;
+            transition: all 0.3s ease;
             margin-top: 10px;
         }
 
         .btn:hover {
-            background-color: #5a3d2e;
+            background: #7d5243;
+            transform: translateY(-2px);
         }
 
         /* Login Link */
         .login-link {
             display: block;
             margin-top: 15px;
-            color: #7d5243;
-            font-size: 16px;
-            font-weight: bold;
+            color: #5A3D2E;
+            font-size: 15px;
+            font-weight: 500;
             text-decoration: none;
-            transition: 0.3s;
+            transition: 0.3s ease;
         }
 
         .login-link:hover {
             text-decoration: underline;
+            color: #7d5243;
         }
 
         /* Responsive Design */
-        @media (max-width: 400px) {
+        @media (max-width: 420px) {
             .register-container {
                 width: 90%;
-                padding: 20px;
+                padding: 25px;
             }
         }
     </style>
@@ -160,19 +123,19 @@
         <form action="/registeruser" method="post">
             <div class="form-group">
                 <label for="name">Name:</label>
-                <input type="text" id="name" name="name" required>
+                <input type="text" id="name" name="name" placeholder="Enter your full name" required>
             </div>
             <div class="form-group">
                 <label for="email">Email:</label>
-                <input type="text" id="email" name="email" required>
+                <input type="text" id="email" name="email" placeholder="Enter your email" required>
             </div>
             <div class="form-group">
                 <label for="password">Password:</label>
-                <input type="password" id="password" name="password" required>
+                <input type="password" id="password" name="password" placeholder="Enter your password" required>
             </div>
             <button type="submit" class="btn">Register</button>
         </form>
-        <a href="/" class="login-link">Login</a>
+        <a href="/" class="login-link">Already have an account? Login</a>
     </div>
 </body>
 </html>

@@ -76,10 +76,11 @@ const viewBlogPage = async(req,res) => {
 // add data 
 const addBlogUser = async(req,res) => {
     try{
-        const {title,description} = req.body;
+        const {title,description,date} = req.body;
         await Users.blogUser.create({
             title : title,
             description: description,
+            date :date,
             image : req.file?.path
         })
         console.log(`DATA ADD..!`);
@@ -93,9 +94,9 @@ const addBlogUser = async(req,res) => {
 // delete data 
 const deleteBlogUser = async(req,res) => {
     try{
-        let single = await Users.blogUser.findById(req.query.delId);
+        let single = await Users.blogUser.findById(req.query.deleteId);
         fs.unlinkSync(single?.image)
-        await Users.blogUser.findByIdAndDelete(req.query.delId)
+        await Users.blogUser.findByIdAndDelete(req.query.deleteId)
         console.log(`DATA DELETE..!`);
         return res.redirect('/viewblog')
     }catch(err){
@@ -108,7 +109,7 @@ const deleteBlogUser = async(req,res) => {
 const editBlogUser = async (req,res) => {
     try{
         return res.render('editblog',{
-             oneRow : await Users.blogUser.findById(req.query.editId)
+             singleRow : await Users.blogUser.findById(req.query.editId)
         })
     }catch(err){
         console.log(err);
@@ -119,13 +120,14 @@ const editBlogUser = async (req,res) => {
 // update data 
 const updateBlogUser = async(req,res) => {
     try{
-        const { editId,title,description} = req.body;
+        const { editId,title,description,date} = req.body;
         if (req.file) {
-            let oneRow = await Users.blogUser.findById(editId);
-            fs.unlinkSync(oneRow?.image);
+            let singleRow = await Users.blogUser.findById(editId);
+            fs.unlinkSync(singleRow?.image);
             await Users.blogUser.findByIdAndUpdate(editId,{
                 title : title,
             description: description,
+            date : date,
             image : req.file?.path
             })
             console.log(`DATA UPDATE`);

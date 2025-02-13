@@ -16,7 +16,7 @@ routes.get('/logoutuser',logoutUser) //logout
 routes.get('/dashboard',checkUserLogin,dashboardPage) // dashboard page
 routes.get('/addblog',checkUserLogin,addBlogPage)// add data
 routes.get('/viewblog',checkUserLogin,viewBlogPage) // view data
-routes.get('/editblog',editBlogUser)
+routes.get('/editblog',checkUserLogin,editBlogUser)
 
 const st = multer.diskStorage({
     destination : (req,res,cb) => {

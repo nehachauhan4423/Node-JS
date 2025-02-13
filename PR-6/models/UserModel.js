@@ -34,6 +34,11 @@ const blogUserSchema = mongoose.Schema({
         required : true
     },
 
+    date : {
+        type:String,
+        require : true
+    },
+
     image : {
         type : String,
         required : true
