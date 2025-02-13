@@ -5,7 +5,6 @@ const registerPage = (req, res) => {
     return res.render('register');
 }
 
-
 const loginPage = (req, res) => {
     if(req.cookies?.auth){
         return res.redirect('/dashboard')

@@ -10,7 +10,6 @@ const db = require('./config/database')
 
 
 const cookieparser = require('cookie-parser');
-
 app.use(cookieparser())
 
 app.use(express.urlencoded());

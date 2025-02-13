@@ -1,0 +1,178 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div align="center">
+        <h1>Register User</h1>
+        <form action="/registeruser" method="post">
+            <table border="1">
+                <tr>
+                    <td>Name :- </td>
+                    <td><input type="text" name="name"></td>
+                </tr>
+                <tr>
+                    <td>Email :- </td>
+                    <td><input type="text" name="email"></td>
+
+                </tr>
+                <tr>
+                    <td>Password :- </td>
+                    <td><input type="text" name="password"></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td> <input type="submit"></td>
+                </tr>
+            </table>
+        </form>
+        <a href="/">Login</a>
+    </div>
+</body>
+
+</html> -->
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register User</title>
+    <style>
+        /* Reset Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Arial", sans-serif;
+        }
+
+        /* Full Page Centering */
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f9f9f9;
+        }
+
+        /* Register Card */
+        .register-container {
+            width: 380px;
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.15);
+            text-align: center;
+            border-top: 5px solid #7d5243;
+        }
+
+        /* Header */
+        .register-container h1 {
+            color: #7d5243;
+            margin-bottom: 20px;
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        /* Form Group */
+        .form-group {
+            margin-bottom: 20px;
+            text-align: left;
+        }
+
+        label {
+            display: block;
+            font-weight: bold;
+            color: #7d5243;
+            margin-bottom: 5px;
+        }
+
+        input {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #7d5243;
+            border-radius: 8px;
+            font-size: 16px;
+            color: #333;
+            outline: none;
+            transition: 0.3s;
+        }
+
+        input:focus {
+            border-color: #5a3d2e;
+            box-shadow: 0 0 5px rgba(125, 82, 67, 0.4);
+        }
+
+        /* Button */
+        .btn {
+            width: 100%;
+            padding: 12px;
+            border: none;
+            border-radius: 8px;
+            background-color: #7d5243;
+            color: white;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+            margin-top: 10px;
+        }
+
+        .btn:hover {
+            background-color: #5a3d2e;
+        }
+
+        /* Login Link */
+        .login-link {
+            display: block;
+            margin-top: 15px;
+            color: #7d5243;
+            font-size: 16px;
+            font-weight: bold;
+            text-decoration: none;
+            transition: 0.3s;
+        }
+
+        .login-link:hover {
+            text-decoration: underline;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 400px) {
+            .register-container {
+                width: 90%;
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="register-container">
+        <h1>Register User</h1>
+        <form action="/registeruser" method="post">
+            <div class="form-group">
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="text" id="email" name="email" required>
+            </div>
+            <div class="form-group">
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" required>
+            </div>
+            <button type="submit" class="btn">Register</button>
+        </form>
+        <a href="/" class="login-link">Login</a>
+    </div>
+</body>
+</html>
