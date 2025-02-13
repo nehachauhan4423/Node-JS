@@ -16,6 +16,26 @@ const userSchema = mongoose.Schema({
     }
 })
 
-const users = mongoose.model('user',userSchema)
+const users = mongoose.model('userlogin',userSchema)
 
-module.exports = users;
+const blogUserSchema = mongoose.Schema({
+    title : {
+        type : String,
+        required : true
+    },
+    description : {
+        type : String,
+        required : true
+    },
+    image : {
+        type : String,
+        required : true
+    }
+})
+
+const blogUser = mongoose.model("bloguser",blogUserSchema)
+
+module.exports = {
+    users,
+    blogUser
+}

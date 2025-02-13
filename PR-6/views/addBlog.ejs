@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <table border="2" align="center">
+
+        <h1 align="center">Add Page</h1>
+
+        <form action="/addbloguser" method="post" enctype="multipart/form-data">
+            <tr>
+                <td>Title</td>
+                <td><input type="text" name="title" placeholder="Enter title"></td>
+            </tr>
+            <tr>
+                <td>Discription</td>
+                <td><input type="text" name="description" placeholder="Enter description"></td>
+            </tr>
+            <tr>
+                <td>Upload image</td>
+                <td> <input type="file" name="image" accept="image/"></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td> <button type="submit">Submit</button></td>
+            </tr>
+            <a href="/viewblogpage">view blog</a>
+        </form>
+        
+    </table>
+</body>
+
+</html>
