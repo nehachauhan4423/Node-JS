@@ -1,5 +1,5 @@
 const moongoose = require('mongoose');
-moongoose.connect(`mongodb://localhost/login-cookie`)
+moongoose.connect(`mongodb://localhost/passportjs`)
 const db = moongoose.connection;
 db.on("connected",(err)=>{
     if (err) {

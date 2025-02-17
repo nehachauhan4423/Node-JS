@@ -146,6 +146,12 @@ const logoutUser = (req, res) => {
     return res.redirect('/')
 }
 
+// registerPage
+const aboutPage = (req, res) => {
+    return res.render('about');
+}
+
+
 
 module.exports = {
     registerPage,
@@ -159,7 +165,8 @@ module.exports = {
     deleteBlogUser,
     editBlogUser,
     updateBlogUser,
-    viewBlogPage
+    viewBlogPage,
+    aboutPage
 }
 
 

@@ -5,7 +5,6 @@ const checkUserLogin = (req,res,next) => {
     return next();
 }
 
-
 module.exports = {
     checkUserLogin
 }

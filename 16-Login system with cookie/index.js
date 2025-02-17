@@ -6,10 +6,14 @@ const app = express();
 
 app.set('view engine','ejs');
 
-const db = require('./config/database')
+const path = require('path');
 
+const db = require('./config/db')
+
+app.use('/uploads',express.static(path.join(__dirname,'uploads')))
 
 const cookieparser = require('cookie-parser');
+
 app.use(cookieparser())
 
 app.use(express.urlencoded());
