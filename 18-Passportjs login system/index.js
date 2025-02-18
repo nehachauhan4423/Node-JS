@@ -1,16 +1,16 @@
 const express = require('express');
 
-const port = 8040;
+const port = 8060;
 
 const app = express();
 
 app.set('view engine','ejs');
 
-const path = require('path');
+// const path = require('path');
 
 const db = require('./config/database')
 
-app.use(express.urlencoded());
+
 
 //login system start 
 const passport = require('passport'); //1
@@ -30,6 +30,8 @@ app.use(passport.initialize()) //5
 app.use(passport.session()) //6
 app.use(passport.setUser); //18
 //login system end 
+
+app.use(express.urlencoded());
 
 
 app.use('/',require('./routes/indexRoute'));

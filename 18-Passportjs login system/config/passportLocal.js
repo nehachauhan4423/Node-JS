@@ -1,12 +1,12 @@
 const passport = require('passport');//10
 
-const passportLocal = require('passport-local');
+const passportLocal = require('passport-local').Strategy;
 
-const {UserModel} = require('../models/Model') //11
+const UserModel = require('../models/Model') //11
 
 //12
 passport.use(new passportLocal({
-    'usernameField' : 'email'
+    usernameField : 'email'
 },async(email,password,done)=>{
     try{
         let user = await UserModel.findOne({email : email});
@@ -42,6 +42,7 @@ passport.checkUser = (req,res,next) => {
     if (!req.isAuthenticated()) {
         return res.redirect('/')
     }
+    return next();
 }
 
 //17
@@ -50,6 +51,6 @@ passport.setUser = (req,res,next) => {
         //record save in session variable
         res.locals.users = req.user;
     }
-    return next()
+    return next();
 }
 module.exports = passport;

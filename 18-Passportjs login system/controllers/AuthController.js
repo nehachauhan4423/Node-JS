@@ -1,27 +1,23 @@
-const User = require('../models/Model');
+const Users = require('../models/Model');
 
 const registerPage = (req,res) => {
     return res.render('register');
 }
 
 const loginPage = (req, res) => {
-    if (req.cookies?.auth) {
         return res.redirect('/dashboard')
-    }
-    return res.render('login');
 }
 
 
 const loginUser = async (req, res) => {
     try {
         const { email, password } = req.body;
-        const user = await Users.users.findOne({ email: email });
+        const user = await Users.findOne({ email: email });
 
         if (!user || user.password != password) {
             console.log('PLEASE ENTER VALID PASS & EMAIL');
             return res.redirect('/');
         }
-        res.cookie('auth', user);
         return res.redirect('/dashboard');
     } catch (err) {
         console.log(err);
@@ -34,7 +30,7 @@ const loginUser = async (req, res) => {
 const registerUser = async (req, res) => {
     try {
         const { name, email, password } = req.body;
-        await Users.users.create({
+        await Users.create({
             name: name,
             email: email,
             password: password
@@ -48,14 +44,14 @@ const registerUser = async (req, res) => {
 }
 
 const dashboardPage = (req, res) => {
-    return res.render('dashboard')
+    return res.render('dashboard');
 }
 
 
-const logoutUser = (req, res) => {
-    res.clearCookie('auth');
-    return res.redirect('/')
-}
+// const logoutUser = (req, res) => {
+//     res.clearCookie('auth');
+//     return res.redirect('/')
+// }
 
 
 module.exports = {
@@ -64,5 +60,5 @@ module.exports = {
     loginUser,
     registerUser,
     dashboardPage,
-    logoutUser,
+    // logoutUser,
 }
