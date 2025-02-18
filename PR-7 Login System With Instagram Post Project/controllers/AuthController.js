@@ -9,8 +9,14 @@ const registerPage = (req, res) => {
 
 // loginpage 
 const loginPage = (req, res) => {
-    // return res.redirect('/dashboard')
+    // // return res.redirect('/dashboard')
+    // return res.render('login');
+
+    if(req.cookies?.auth){
+        return res.redirect('/dashboard');
+    }
     return res.render('login');
+
 }
 
 // loginuser 
@@ -42,6 +48,7 @@ const registerUser = async (req, res) => {
             password: password
         })
         console.log('USER REGISTER');
+        console.log('name,email,password');
         return res.redirect('/');
     } catch (err) {
         console.log(err);
