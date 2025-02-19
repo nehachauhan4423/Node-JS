@@ -15,12 +15,16 @@ const userSchema = mongoose.Schema({
     password : {
         type : String,
         required : true
+    },
+    role : {
+        type : String,
+        default : "user"
     }
 
 })
 
-const users = mongoose.model('loginuser',userSchema)
+const user = mongoose.model('user',userSchema)
 
 module.exports = {
-    users
+    user
 }

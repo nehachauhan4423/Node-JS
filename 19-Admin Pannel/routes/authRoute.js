@@ -1,22 +1,19 @@
 const express = require('express');
 
-const { loginPage, registerPage, dashboardPage, registerUser, loginUser, logoutUser, addBlogPage, viewBlogPage, addBlogUser, deleteBlogUser, editBlogUser, updateBlogUser } = require('../controllers/AuthController');
-
-// const {checkUserLogin} = require('../middleware/checkUser')
-
 const routes = express.Router();
 
-const multer = require('multer');
+const { loginPage, registerPage, dashboardPage, registerUser, loginUser } = require('../controller/AuthController');
 
-const passport = require('passport') //7
-
-
-
-routes.get('/',loginPage) //null route
-routes.post('/loginuser', /* 8 */ passport.authenticate('local',{failureRedirect:'/'}),loginUser) //login user
-routes.get('/register',registerPage) //register user
-routes.post('/registeruser',registerUser)//ahi vache middleware mukvu nahi
-routes.get('/dashboard',passport.checkUserLogin,dashboardPage) // dashboard page
+const passport = require('passport')
 
 
-module.exports = routes;    
+routes.get('/',loginPage)
+routes.get('/register',registerPage)
+routes.get('/dashboard',dashboardPage)
+routes.post('/registeruser',registerUser)
+routes.post('/loginuser',loginUser)
+
+
+
+module.exports = routes;
+
