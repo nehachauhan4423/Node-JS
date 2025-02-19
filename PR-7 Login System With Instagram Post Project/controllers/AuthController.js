@@ -12,7 +12,7 @@ const loginPage = (req, res) => {
     // // return res.redirect('/dashboard')
     // return res.render('login');
 
-    if(req.cookies?.auth){
+    if(req.locals?.users){
         return res.redirect('/dashboard');
     }
     return res.render('login');
