@@ -60,15 +60,16 @@
 
 
 
-          <form action="../index3.html" method="post">
+          <form action="/loginuser" method="post">
             <div class="input-group mb-3">
-              <input type="email" class="form-control" placeholder="Email" />
+              <input type="email" class="form-control" placeholder="Email" name="email"/>
               <div class="input-group-text"><span class="bi bi-envelope"></span></div>
             </div>
             <div class="input-group mb-3">
               <input type="password" class="form-control" placeholder="Password" />
-              <div class="input-group-text"><span class="bi bi-lock-fill"></span></div>
+              <div class="input-group-text"><span class="bi bi-lock-fill" name="password"></span></div>
             </div>
+
             <!--begin::Row-->
             <div class="row">
               <div class="col-8">
@@ -81,6 +82,7 @@
               <div class="col-4">
                 <div class="d-grid gap-2">
                   <button type="submit" class="btn btn-primary">Sign In</button>
+                  <a href="/register"></a>
                 </div>
               </div>
               <!-- /.col -->
@@ -92,7 +94,7 @@
 
           <div class="social-auth-links text-center mb-3 d-grid gap-2">
             <p>- OR -</p>
-            <a href="#" class="btn btn-primary">
+            <a href="https://www.facebook.com/" target="_blank" class="btn btn-primary">
               <i class="bi bi-facebook me-2"></i> Sign in using Facebook
             </a>
             <a href="#" class="btn btn-danger">
@@ -102,7 +104,7 @@
           <!-- /.social-auth-links -->
           <p class="mb-1"><a href="forgot-password.html">I forgot my password</a></p>
           <p class="mb-0">
-            <a href="register.html" class="text-center"> Register a new membership </a>
+            <a href="/register" class="text-center"> Register a new membership </a>
           </p>
         </div>
         <!-- /.login-card-body -->
