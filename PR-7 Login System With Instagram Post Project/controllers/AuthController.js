@@ -12,7 +12,7 @@ const loginPage = (req, res) => {
     // // return res.redirect('/dashboard')
     // return res.render('login');
 
-    if(req.locals?.users){
+    if (req.locals?.users) {
         return res.redirect('/dashboard');
     }
     return res.render('login');
@@ -67,78 +67,93 @@ const addBlogPage = (req, res) => {
 }
 
 // viewblogpage 
-const viewBlogPage = async(req,res) => {
-    try{
-        return res.render('viewblog',{
-            allBlogs : await Users.blogUser.find()
+const viewBlogPage = async (req, res) => {
+    try {
+        return res.render('viewblog', {
+            allBlogs: await Users.blogUser.find()
         });
-    }catch(err) {
+    } catch (err) {
         console.log(err);
         return false
     }
 }
 
 // add data 
-const addBlogUser = async(req,res) => {
-    try{
-        const {title,description,date} = req.body;
+const addBlogUser = async (req, res) => {
+    try {
+        const { title, description, date } = req.body;
         await Users.blogUser.create({
-            title : title,
+            title: title,
             description: description,
-            date :date,
-            image : req.file?.path
+            date: date,
+            image: req.file?.path
         })
         console.log(`DATA ADD..!`);
         return res.redirect('/viewblog')
-    }catch(err){
+    } catch (err) {
         console.log(err);
         return false;
     }
 }
 
 // delete data 
-const deleteBlogUser = async(req,res) => {
-    try{
+const deleteBlogUser = async (req, res) => {
+    try {
         let single = await Users.blogUser.findById(req.query.deleteId);
         fs.unlinkSync(single?.image)
         await Users.blogUser.findByIdAndDelete(req.query.deleteId)
         console.log(`DATA DELETE..!`);
         return res.redirect('/viewblog')
-    }catch(err){
+    } catch (err) {
         console.log(err);
         return false
     }
 }
 
 // edit data 
-const editBlogUser = async (req,res) => {
-    try{
-        return res.render('editblog',{
-             singleRow : await Users.blogUser.findById(req.query.editId)
+// const editBlogUser = async (req, res) => {
+//     try {
+//         return res.render('editblog', {
+//             singleRow: await Users.blogUser.findById(req.query.editId)
+//         })
+//     } catch (err) {
+//         console.log(err);
+//         return false
+//     }
+// }
+// edit data 
+
+
+const editBlogUser = async (req, res) => {
+    try {
+        return res.render('editblog', {
+            singleRow: await Users.blogUser.findById(req.query.editId)
         })
-    }catch(err){
+    } catch (err) {
         console.log(err);
         return false
     }
 }
 
+
+
 // update data 
-const updateBlogUser = async(req,res) => {
-    try{
-        const { editId,title,description,date} = req.body;
+const updateBlogUser = async (req, res) => {
+    try {
+        const { editId, title, description, date } = req.body;
         if (req.file) {
             let singleRow = await Users.blogUser.findById(editId);
             fs.unlinkSync(singleRow?.image);
-            await Users.blogUser.findByIdAndUpdate(editId,{
-                title : title,
-            description: description,
-            date : date,
-            image : req.file?.path
+            await Users.blogUser.findByIdAndUpdate(editId, {
+                title: title,
+                description: description,
+                date: date,
+                image: req.file?.path
             })
             console.log(`DATA UPDATE`);
-            return res.redirect('/viewblog')
+            return res.redirect('/viewBlog')
         }
-    }catch(err){
+    } catch (err) {
         console.log(err);
         return false
     }
