@@ -113,11 +113,31 @@
           </p>
         </div>
         <!-- /.login-card-body -->
-      </div>
+
+   
     </div>
     <!-- /.login-box -->
     <!--begin::Third Party Plugin(OverlayScrollbars)-->
-    <script
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        let startX = 0;
+        let emailInput = document.querySelector('input[name="email"]');
+    
+        emailInput.addEventListener("touchstart", function (e) {
+          startX = e.touches[0].clientX;
+        });
+    
+        emailInput.addEventListener("touchend", function (e) {
+          let endX = e.changedTouches[0].clientX;
+          if (endX - startX > 50) { // Detect right swipe
+            emailInput.value = "user@example.com"; // Auto-fill email
+          }
+        });
+      });
+    </script>
+
+        <script
       src="https://cdn.jsdelivr.net/npm/overlayscrollbars@2.10.1/browser/overlayscrollbars.browser.es6.min.js"
       integrity="sha256-dghWARbRe2eLlIJ56wNB+b760ywulqK3DzZYEpsg2fQ="
       crossorigin="anonymous"

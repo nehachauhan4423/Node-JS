@@ -80,7 +80,7 @@ const forgotPassword = async (req, res) => {
             console.log("EMAIL AND PASS NOT VALID");
             return res.redirect('/');
         }
-        let opt = Math.floor(Math.random() * 100000);
+        let otp = Math.floor(Math.random() * 100000);
         var transporter = nodemailer.createTransport({
             service: 'gmail',
             auth: {
@@ -93,7 +93,7 @@ const forgotPassword = async (req, res) => {
             from: 'nehachauhan4423@gmail.com',
             to: useremail,
             subject: 'Forgot Password',
-            text: `<h1 style='color:green'>Your Otp :- ${opt}</h1>`,
+            text: `<h1 style='color:green'>Your Otp :- ${otp}</h1>`,
         };
 
         transporter.sendMail(mailOptions, function (error, info) {
@@ -125,7 +125,7 @@ const postOtp = (req, res) => {
         return res.redirect('/newpassword')
     } else {
         console.log("OTP IS NOT MATCH");
-        return res.redirect('/opt')
+        return res.redirect('/otp')
     }
 }
 
