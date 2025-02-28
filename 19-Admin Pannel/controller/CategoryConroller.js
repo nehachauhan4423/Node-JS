@@ -2,7 +2,7 @@ const CategoryModel = require('../models/CategoryModel');
 
 
 const addCategoryPage = (req, res) => {
-    return res.render('category/addcategory')
+    return res.render('category/addcategorypage')
 }
 
 
@@ -37,7 +37,7 @@ const insertCategory = async (req, res) => {
 const deleteCategory = async (req, res) => {
     try {
         let id = req.query?.id;
-        await CategoryModel.findByAndDelete(id);
+        await CategoryModel.findByIdAndDelete(id);
         req.flash('success', 'category delete successfully');
         return res.redirect('/category')
     } catch (err) {

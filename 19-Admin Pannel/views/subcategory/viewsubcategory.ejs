@@ -1,3 +1,102 @@
 <%- include('../header') %>
-<h1>view subcategory</h1>
+
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <% if(locals?.message?.success) { %>
+                <div class="alert alert-success w-50" role="alertdialog">
+                    <%= locals?.message?.success %>
+                </div>
+            <% } %>
+
+            <div class="card mt-4 p-2">
+                <div class="card-content">
+                    <!-- <h5 class="card-title">Static Table</h5> -->
+                </div>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Sr No</th>
+                            <th>Category</th>
+                            <th>Action</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <!-- <tbody>
+                        <% [].forEach((val,index) => { %>
+                            <tr>
+                                <td>
+                                    <%= ++index %>
+                                </td>
+                                <td>
+                                    <%= val?.category %>
+                                </td>
+                                <td>
+                                    <a href="/category/deletecategegory?id=<%= val?.id %>"
+                                        class="btn btn-danger btn-sm">Delete</a>
+
+                                    <a href="/category/editcategory?id=<%= val?.id %>"
+                                        class="btn btn-primary btn-sm">Edit</a>
+                                </td>
+                                <td>
+
+                                    <% if(val?.status=="active" ) { %><a
+                                        href="/category/changestatus?id=<%= val?.id %>&status=deactive"
+                                        class=" btn btn-success btn-sm">
+                                        <%= val?.status %>
+                                    </a>
+                                    <% } else { %>
+                                        <a href="/category/changestatus?id=<%= val?.id %>&status=active"
+                                            class="btn btn-warning btn-sm">
+                                            <%= val?.status %>
+                                        </a>
+                                        <% } %>
+
+                                </td>
+                            </tr>
+                      <% }) %>
+                    </tbody> -->
+
+
+                    <tbody>
+                        <% [].forEach((val,index)=>{ %>
+                            <tr>
+                                <td>
+                                    <%= ++index %>
+                                </td>
+                                <td>
+                                    <%= val?.category %>
+                                </td>
+                                <td>
+                                    <a href="/category/deletecategegory?id=<%= val?.id %>"
+                                        class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></a>
+
+                                    <a href="/category/editcategory?id=<%= val?.id %>"
+                                        class="btn btn-primary btn-sm"><i class="fa fa-edit"></i></a>
+                                </td>
+                                <td>
+
+                                    <% if(val?.status=="active" ) { %><a
+                                            href="/category/changestatus?id=<%= val?.id %>&status=deactive"
+                                            class=" btn btn-success btn-sm">
+                                            <%= val?.status %>
+                                        </a>
+                                        <% } else { %>
+                                            <a href="/category/changestatus?id=<%= val?.id %>&status=active"
+                                                class="btn btn-warning btn-sm">
+                                                <%= val?.status %>
+                                            </a>
+                                            <% } %>
+                                </td>
+                            </tr>
+                            <% }) %>
+                    </tbody>
+
+                </table>
+            </div>
+
+        </div>
+    </div>
+</div>
+
 <%- include('../footer') %>
