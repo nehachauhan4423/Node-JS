@@ -1,3 +1,60 @@
+
 <%- include('../header') %>
-<h1>editsubcategory</h1>
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <% if(locals?.message?.success) { %>
+                <div class="alert alert-success text-center" role="alert">
+                    <%= locals?.message?.success %>
+                </div>
+            <% } %>
+
+            <div class="card shadow-lg">
+                <div class="card-header bg-primary text-white text-center">
+                    <h4 class="mb-0">Edit Subcategory</h4>
+                </div>
+                <div class="card-body">
+                    <form action="/subcategory/insertsubcategory" method="post">
+                        <input type="hidden" value="<%= single.id %>" name="editid">
+
+                        <div class="mb-3">
+                            <label class="form-label">Category</label>
+                            <select name="category" class="form-select">
+                                <option>---- Select Category ----</option>
+                                <% category.map((val) => { %>
+                                    <option 
+                                        value="<%= val?.id %>"
+                                        <% if(val?.category == single?.categoryId?.category) { %> selected <% } %>
+                                    >
+                                        <%= val?.category %>
+                                    </option>
+                                <% }) %>
+                            </select>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">Subcategory</label>
+                            <input 
+                                type="text" 
+                                class="form-control"
+                                value="<%= single?.subcategory %>" 
+                                name="subcategory" 
+                                placeholder="Enter Subcategory"
+                                required
+                            >
+                        </div>
+
+                        <div class="text-center">
+                            <button type="submit" class="btn btn-primary w-100">
+                                Update Subcategory
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
 <%- include('../footer') %>
