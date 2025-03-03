@@ -62,16 +62,16 @@
     const categoryChange = () => {
         let catid = document.getElementById('category').value;
         $.ajax({
-            method: 'GET',
-            url: `/exsubcategory/ajaxcategorywiserecord?categoryid=${catid}`,
-            success: function (res) {
+            method : 'GET',
+            url : `/exsubcategory/ajaxcategorywiserecord?categoryid=${catid}`,
+            success : function (res) {
                 if (res.success) {
                     let tbl = "";
                     tbl += `<option>---select subcategory---</option>`
                     let category = res.category;
                     category.map((val) => {
                         tbl += `
-                                    <option value=${val?._id}>${val?.subcategory}</option>
+                                    <option value=${val?._id}> ${val?.subcategory} </option>
                                 `
                     })
                     document.getElementById('subcategory').innerHTML = tbl;
