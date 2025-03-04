@@ -22,7 +22,7 @@
                                 <select name="category" id="category" onchange="categoryChange()">
                                     <option value="">---select category---</option>
                                     <% category.map((val)=> { %>
-                                        <option value="<% val?.id %>">
+                                        <option value="<%= val?.id %>">
                                             <%= val?.category %>
                                         </option>
                                    <% }) %>
@@ -61,6 +61,7 @@
 <script type="text/javascript">
     const categoryChange = () => {
         let catid = document.getElementById('category').value;
+        alert(catid)
         $.ajax({
             method : 'GET',
             url : `/exsubcategory/ajaxcategorywiserecord?categoryid=${catid}`,

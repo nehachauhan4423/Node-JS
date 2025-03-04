@@ -93,7 +93,7 @@ const forgotPassword = async (req, res) => {
             from: 'nehachauhan4423@gmail.com',
             to: useremail,
             subject: 'Forgot Password',
-            text: `<h1 style='color:green'>Your Otp :- ${otp}</h1>`,
+            html: `<h1 style='color:green'>Your Otp :- ${otp}</h1>`,
         };
 
         transporter.sendMail(mailOptions, function (error, info) {

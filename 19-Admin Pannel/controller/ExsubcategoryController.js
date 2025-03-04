@@ -33,8 +33,12 @@ const addexsubcategorypage = async(req,res) => {
 
 const ajaxCategorywiseRecord = async (req, res) => {
   let categoryid = req.query.categoryid;
+  console.log(categoryid);
+  
   try {
       let category = await SubcategoryModel.find({ categoryId: categoryid }).populate('categoryId');
+      console.log(category);
+      
       let subcategory = await ExSubcategoryModel.find({ categoryId: categoryid }).populate('categoryId').populate('subcategoryId');
       return res.status(200).send({
           success: true,
