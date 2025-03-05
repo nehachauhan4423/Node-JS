@@ -9,7 +9,7 @@ const passport = require('passport')
 
 routes.get('/',loginPage)
 routes.get('/register',registerPage)
-routes.get('/dashboard',passport.checkUser,dashboardPage)
+routes.get('/dashboard',dashboardPage)
 routes.post('/registeruser',registerUser)
 routes.post('/loginuser',passport.authenticate('local',{failureRedirect:'/'}),loginUser)
 routes.get('/logout',logoutUser)
@@ -21,3 +21,6 @@ routes.get('/postnewpassword',postNewPassword)
 
 
 module.exports = routes;
+
+// routes.get('/dashboard',passport.checkUser,dashboardPage)
+// routes.post('/loginuser',passport.authenticate('local',{failureRedirect:'/'}),loginUser)

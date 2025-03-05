@@ -13,7 +13,7 @@
 
                         <div class="card">
                             <form method="post" action="/exsubcategory/insertexsubcategory">
-                                <input type="hidden" value="<%= single?.id %>" name="editid" >
+                                <input type="hidden" value="<%= single?.id %>" name="editid">
                                 <div class="card-main">
                                     <h4 class="card-title">Exsubcategory</h4>
                                     <div class="form-grouup row">
@@ -47,20 +47,19 @@
 
 
                                     <div class="form-grouup row">
-                                        <label for="fname"
-                                            class="col-sm-3 text-right">Exsubcategory</label>
+                                        <label for="fname" class="col-sm-3 text-right">Exsubcategory</label>
                                         <div class="col-sm-9">
                                             <input type="text" name="exsubcategory" value="<%= single?.exsubcategory %>"
-                                             name="exsubcategory" placeholder="Exsubcategory">
+                                                name="exsubcategory" placeholder="Exsubcategory">
                                         </div>
                                     </div>
 
                                 </div>
-                                
-                                    <div class="card-body">
-                                        <button type="submit" class="btn btn-primary">Submit</button>
-                                    </div>
-                              
+
+                                <div class="card-body">
+                                    <button type="submit" class="btn btn-primary">Submit</button>
+                                </div>
+
                             </form>
                         </div>
             </div>
@@ -69,7 +68,7 @@
 
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-    
+
     <script type="text/javascript">
 
         const editSubcategory = () => {

@@ -18,23 +18,8 @@ const dashboardPage = (req, res) => {
 }
 
 const registerUser = async (req, res) => {
-    // try {
-    //     const { name, email, password } = req.body;
-    //         let user = await UserModel.create({
-    //             name: name,
-    //             email: email,
-    //             password: password
-    //         })
-    //         console.log("USER REGISTER");
-    //         return res.redirect('/dashboard')
-    // } catch (err) {
-    //     console.log(err);
-    //     return false;
-    // }
-
     try {
-        const { name, email, password, cpassword } = req.body;
-        if (password == cpassword) {
+        const { name, email, password } = req.body;
             let user = await UserModel.create({
                 name: name,
                 email: email,
@@ -42,15 +27,12 @@ const registerUser = async (req, res) => {
             })
             
             console.log("USER REGISTER");
-            return res.redirect('/')
-        } else {
-        console.log("PASS AND CONFIG PASS NOT MATCH");
-                    return res.redirect('/register')
-        }
+            return res.redirect('/dashboard')
     } catch (err) {
         console.log(err);
         return false;
     }
+
 }
 
 const loginUser = async (req, res) => {

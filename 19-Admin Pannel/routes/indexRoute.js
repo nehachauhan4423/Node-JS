@@ -6,5 +6,6 @@ routes.use('/',require('./authRoute'));
 routes.use('/category',require('./categoryRoute'))
 routes.use('/subcategory',require('./subcategoryRoute'))
 routes.use('/exsubcategory',require('./exsubCategoryRoute'))
+routes.use('/productcategory',require('./productRoute'))
 
 module.exports = routes;
