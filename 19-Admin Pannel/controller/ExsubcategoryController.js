@@ -110,11 +110,34 @@ const editExsubcategory = async (req, res) => {
     }
 }
 
+const changeStatus = async(req,res) => {
+    try{
+        const {id,status} = req.query;
+        if(status == "deactive"){
+            await ExSubcategoryModel.findByIdAndUpdate(id,{
+                status : status
+            })
+            req.flash('success',"Subcategory update")
+            return res.redirect('/exsubcategory')
+        }else{
+            await ExSubcategoryModel.findByIdAndUpdate(id,{
+                status : status
+            })
+            req.flash("success","Subcategory Update")
+            return res.redirect('/exsubcategory')
+        }
+    }catch(err){
+        console.log(err);
+        return false
+    }
+}
+
 module.exports = {
     viewexsubcategorypage,
     addexsubcategorypage,
     ajaxCategorywiseRecord,
     insertExsubCategory,
     deleteexsubcategegory,
-    editExsubcategory
+    editExsubcategory,
+    changeStatus
 }

@@ -1,121 +1,183 @@
 <%- include('../header') %>
 
-    <div class="container">
-        <div class="row">
+<style>
+    .container {
+        margin-top: 30px;
+    }
+    
+    .card {
+        background: #ffffff;
+        border-radius: 8px;
+        padding: 20px;
+        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+        border: none;
+    }
 
-            <div class="col-md-6">
+    .card-title {
+        font-size: 20px;
+        font-weight: bold;
+        text-align: center;
+        color: #333;
+        margin-bottom: 15px;
+        text-transform: uppercase;
+    }
 
-                <% if(locals.message?.success) { %>
-                    <div class="alert alert-success">
-                        <%= locals.message?.success %>
-                    </div>
-                    <% } %>
+    .form-grouup {
+        margin-bottom: 15px;
+    }
 
-                        <div class="card">
-                            <form method="post" action="/exsubcategory/insertexsubcategory">
-                                <input type="hidden" value="<%= single?.id %>" name="editid">
-                                <div class="card-main">
-                                    <h4 class="card-title">Exsubcategory</h4>
-                                    <div class="form-grouup row">
-                                        <label for="fname" class="col-sm-3 text-right control-label col-form-label">
-                                            Category</label>
-                                        <div class="col-sm-9">
-                                            <select name="category" id="category" onchange="categoryChange()">
-                                                <option>---select category---</option>
+    .form-grouup label {
+        font-weight: 600;
+        margin-bottom: 5px;
+        color: #555;
+        display: block;
+    }
 
-                                                <% category.map((val)=>{ %>
-                                                    <option <% if(single?.categoryId?.category==val?.category) { %>
-                                                        selected <% } %>
-                                                            value="<%= val?.id %>">
-                                                                <%= val?.category %>
-                                                    </option>
-                                                    <% }) %>
+    select, input {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ced4da;
+        border-radius: 5px;
+        outline: none;
+        transition: 0.3s ease;
+        background: #fff;
+    }
 
-                                            </select>
-                                        </div>
-                                    </div>
+    select:focus, input:focus {
+        border-color: #007bff;
+        box-shadow: 0px 0px 5px rgba(0, 123, 255, 0.5);
+    }
 
-                                    <div class="form-grouup">
-                                        <label for="fname" class="col-sm-3 text-right">
-                                            Subcategory</label>
-                                        <div class="col-sm-9">
-                                            <select name="subcategory" id="subcategory">
-                                                <option>---select subcategory---</option>
-                                            </select>
-                                        </div>
-                                    </div>
+    .btn-primary {
+        background-color: #007bff;
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        font-size: 16px;
+        cursor: pointer;
+        transition: 0.3s ease;
+        width: 100%;
+        display: block;
+        margin-top: 10px;
+    }
 
+    .btn-primary:hover {
+        background-color: #0056b3;
+    }
 
-                                    <div class="form-grouup row">
-                                        <label for="fname" class="col-sm-3 text-right">Exsubcategory</label>
-                                        <div class="col-sm-9">
-                                            <input type="text" name="exsubcategory" value="<%= single?.exsubcategory %>"
-                                                name="exsubcategory" placeholder="Exsubcategory">
-                                        </div>
-                                    </div>
+    .alert-success {
+        text-align: center;
+        font-weight: bold;
+        border-radius: 5px;
+        padding: 10px;
+        color: #155724;
+        background-color: #d4edda;
+        border: 1px solid #c3e6cb;
+        margin-bottom: 15px;
+    }
+</style>
 
-                                </div>
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
 
-                                <div class="card-body">
-                                    <button type="submit" class="btn btn-primary">Submit</button>
-                                </div>
+            <% if(locals.message?.success) { %>
+                <div class="alert alert-success">
+                    <%= locals.message?.success %>
+                </div>
+            <% } %>
 
-                            </form>
+            <div class="card">
+                <form method="post" action="/exsubcategory/insertexsubcategory">
+                    <input type="hidden" value="<%= single?.id %>" name="editid">
+                    <div class="card-main">
+                        <h4 class="card-title">Exsubcategory</h4>
+
+                        <div class="form-grouup">
+                            <label>Category</label>
+                            <div class="col-sm-12">
+                                <select name="category" id="category" onchange="categoryChange()">
+                                    <option>---select category---</option>
+                                    <% category.map((val)=>{ %>
+                                        <option <% if(single?.categoryId?.category==val?.category) { %> selected <% } %>
+                                            value="<%= val?.id %>">
+                                            <%= val?.category %>
+                                        </option>
+                                    <% }) %>
+                                </select>
+                            </div>
                         </div>
+
+                        <div class="form-grouup">
+                            <label>Subcategory</label>
+                            <div class="col-sm-12">
+                                <select name="subcategory" id="subcategory">
+                                    <option>---select subcategory---</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-grouup">
+                            <label>Exsubcategory</label>
+                            <div class="col-sm-12">
+                                <input type="text" name="exsubcategory" value="<%= single?.exsubcategory %>"
+                                    placeholder="Enter Exsubcategory">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card-body">
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </div>
+                </form>
             </div>
+
         </div>
     </div>
+</div>
 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script type="text/javascript">
+    const editSubcategory = () => {
+        let catid = `<%= single?.categoryId?.id %>`;
+        let subcateid = `<%= single?.subcategoryId?.id %>`;
+        $.ajax({
+            method: 'GET',
+            url: `/exsubcategory/ajaxcategorywiserecord?categoryid=${catid}`,
+            success: function (res) {
+                let subcategory = res.subcategory;
+                let category = res.category;
+                let tbl = "";
+                tbl += `<option>---select subcategory---</option>`;
+                category.map((val) => {
+                    tbl += `<option ${val?._id == subcateid ? 'selected' : ''} value=${val?._id}>${val?.subcategory}</option>`;
+                });
+                document.getElementById('subcategory').innerHTML = tbl;
+            }
+        });
+    };
+    editSubcategory();
 
-    <script type="text/javascript">
-
-        const editSubcategory = () => {
-            let catid = `<%= single?.categoryId?.id %>`;
-            let subcateid = `<%= single?.subcategoryId?.id %>`;
-            $.ajax({
-                method: 'GET',
-                url: `/exsubcategory/ajaxcategorywiserecord?categoryid=${catid}`,
-                success: function (res) {
-                    let subcategory = res.subcategory;
-                    let category = res.category;
+    const categoryChange = () => {
+        let catid = document.getElementById('category').value;
+        $.ajax({
+            method: 'GET',
+            url: `/exsubcategory/ajaxcategorywiserecord?categoryid=${catid}`,
+            success: function (res) {
+                if (res.success) {
                     let tbl = "";
-                    tbl += `<option>---select subcategory---</option>`
+                    tbl += `<option value="">---select subcategory---</option>`;
+                    let category = res.category;
                     category.map((val) => {
-                        console.log(val);
-
-                        tbl += `
-                            <option ${val?._id == subcateid ? 'selected' : ''} value=${val?._id}>${val?.subcategory}</option>
-                        `
-                    })
+                        tbl += `<option value=${val?._id}>${val?.subcategory}</option>`;
+                    });
                     document.getElementById('subcategory').innerHTML = tbl;
                 }
-            })
+            }
+        });
+    };
+</script>
 
-        }
-        editSubcategory();
-
-        const categoryChange = () => {
-            let catid = document.getElementById('category').value;
-            $.ajax({
-                method: 'GET',
-                url: `/exsubcategory/ajaxcategorywiserecord?categoryid=${catid}`,
-                success: function (res) {
-                    if (res.success) {
-                        let tbl = "";
-                        tbl += `<option value="">---select subcategory---</option>`
-                        let category = res.category;
-                        category.map((val) => {
-                            tbl += `
-                                    <option value=${val?._id}>${val?.subcategory}</option>
-                                `
-                        })
-                        document.getElementById('subcategory').innerHTML = tbl;
-                    }
-                }
-            })
-        }
-    </script>
-
-    <%- include('../footer') %>
+<%- include('../footer') %>

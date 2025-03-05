@@ -47,7 +47,7 @@
                                         </td>
                                         <td>
     
-                                            <% if(val?.status=="active" ) { %><a
+                                            <!-- <% if(val?.status=="active" ) { %><a
                                                     href="/exsubcategory/changestatus?id=<%= val?.id %>&status=deactive"
                                                     class=" btn btn-success btn-sm">
                                                     <%= val?.status %>
@@ -57,7 +57,20 @@
                                                         class="btn btn-warning btn-sm">
                                                         <%= val?.status %>
                                                     </a>
-                                                    <% } %>
+                                                    <% } %> -->
+
+
+                                                    <% if(val?.status=="active" ) { %><a
+                                                        href="/exsubcategory/changestatus?id=<%= val?.id %>&status=deactive"
+                                                        class=" btn btn-success btn-sm">
+                                                        <%= val?.status %>
+                                                    </a>
+                                                    <% } else { %>
+                                                        <a href="/exsubcategory/changestatus?id=<%= val?.id %>&status=active"
+                                                            class="btn btn-warning btn-sm">
+                                                            <%= val?.status %>
+                                                        </a>
+                                                        <% } %>
                                         </td>
                                     </tr>
                                     <% }) %>
