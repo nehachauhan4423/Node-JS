@@ -34,11 +34,9 @@ const addexsubcategorypage = async(req,res) => {
 const ajaxCategorywiseRecord = async (req, res) => {
   let categoryid = req.query.categoryid;
   console.log(categoryid);
-  
   try {
       let category = await SubcategoryModel.find({ categoryId: categoryid }).populate('categoryId');
       console.log(category);
-      
       let subcategory = await ExSubcategoryModel.find({ categoryId: categoryid }).populate('categoryId').populate('subcategoryId');
       return res.status(200).send({
           success: true,
@@ -71,7 +69,7 @@ const insertExsubCategory = async (req, res) => {
               exsubcategory: exsubcategory
           })
           req.flash('success', 'Exsubcategory successfully create');
-          return res.redirect('/exsubcategory/addexsubcategorypage')
+          return res.redirect('/exsubcategory/exaddsubcategory')
       }
   } catch (err) {
       console.log(err);
@@ -79,10 +77,44 @@ const insertExsubCategory = async (req, res) => {
   }
 }
 
+const deleteexsubcategegory = async (req, res) => {
+    try {
+        let id = req.query?.id;
+        await ExSubcategoryModel.findByIdAndDelete(id);
+        req.flash('success', 'subcategory successfully delete')
+        return res.redirect('/exsubcategory');
+
+    } catch (err) {
+        console.log(err);
+        return false;
+
+    }
+}
+
+
+const editExsubcategory = async (req, res) => {
+    try {
+        let id = req.query?.id
+        let category = await CategoryModel.find({ status: 'active' })
+        let subcategory = await SubcategoryModel.find({ status: 'active' })
+
+        let single = await ExSubcategoryModel.findById(id).populate('categoryId').populate('subcategoryId');
+        return res.render('exsubcategory/exeditsubcategory', {
+            category: category,
+            subcategory: subcategory,
+            single
+        })
+    } catch (err) {
+        console.log(err);
+        return false;
+    }
+}
 
 module.exports = {
     viewexsubcategorypage,
     addexsubcategorypage,
     ajaxCategorywiseRecord,
-    insertExsubCategory
+    insertExsubCategory,
+    deleteexsubcategegory,
+    editExsubcategory
 }

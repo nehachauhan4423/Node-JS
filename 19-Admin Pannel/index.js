@@ -7,6 +7,7 @@ const app = express();
 const db = require('./config/db');
 
 app.set('view engine','ejs')
+
 const path = require('path');
 
 app.use('/',express.static(path.join(__dirname,'public')))

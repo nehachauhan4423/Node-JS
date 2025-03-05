@@ -61,7 +61,7 @@
 <script type="text/javascript">
     const categoryChange = () => {
         let catid = document.getElementById('category').value;
-        alert(catid)
+        // alert(catid)
         $.ajax({
             method : 'GET',
             url : `/exsubcategory/ajaxcategorywiserecord?categoryid=${catid}`,

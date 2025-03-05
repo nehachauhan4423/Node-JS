@@ -44,8 +44,8 @@ const registerUser = async (req, res) => {
             console.log("USER REGISTER");
             return res.redirect('/')
         } else {
-        console.log("password and config pass not match");
-                    return res.redirect('/dashboard')
+        console.log("PASS AND CONFIG PASS NOT MATCH");
+                    return res.redirect('/register')
         }
     } catch (err) {
         console.log(err);

@@ -1,5 +1,74 @@
 <%- include('../header') %>
 
-<h1>exsubcategory view page</h1>
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <% if(locals?.message?.success) { %>
+                <div class="alert alert-success w-50" role="alert">
+                    <%= locals?.message?.success %>
+                </div>
+                <% } %>
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title m-b-0">Static Table</h5>
+                        </div>
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Srno</th>
+                                    <th scope="col">Category</th>
+                                    <th scope="col">Subcategory</th>
+                                    <th scope="col">Exsubcategory</th>
+                                    <th scope="col">Action</th>
+                                    <th scope="col">Status</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <% exsubcategory.map((val,index)=>{ %>
+                                    <tr>
+                                        <td>
+                                            <%= ++index %>
+                                        </td>
+                                        <td>
+                                            <%= val?.categoryId?.category %>
+                                        </td>
+                                        <td>
+                                            <%= val?.subcategoryId?.subcategory %>
+                                        </td>
+                                        <td>
+                                            <%= val?.exsubcategory %>
+                                        </td>
+                                        <td>
+                                            <a href="/exsubcategory/deleteexsubcategegory?id=<%= val?.id %>"
+                                                class="btn btn-danger btn-sm">Delete</a>
+    
+                                            <a href="/exsubcategory/editexsubcategory?id=<%= val?.id %>"
+                                                class="btn btn-primary btn-sm">Edit</a>
+                                        </td>
+                                        <td>
+    
+                                            <% if(val?.status=="active" ) { %><a
+                                                    href="/exsubcategory/changestatus?id=<%= val?.id %>&status=deactive"
+                                                    class=" btn btn-success btn-sm">
+                                                    <%= val?.status %>
+                                                </a>
+                                                <% } else { %>
+                                                    <a href="/exsubcategory/changestatus?id=<%= val?.id %>&status=active"
+                                                        class="btn btn-warning btn-sm">
+                                                        <%= val?.status %>
+                                                    </a>
+                                                    <% } %>
+                                        </td>
+                                    </tr>
+                                    <% }) %>
+                            </tbody>
+                        </table>
+                    </div>
+    
+    
+        </div>
+      
+    </div>
+</div>
 
 <%-include('../footer') %>
