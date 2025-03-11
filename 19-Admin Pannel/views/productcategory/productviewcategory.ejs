@@ -1,4 +1,79 @@
 <%- include('../header') %>
-<h1>vieoproduct page</h1>
 
-<%- include('../footer') %>
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <% if(locals?.message?.success) { %>
+                    <div class="alert alert-success w-50" role="alert">
+                        <%= locals?.message?.success %>
+                    </div>
+                    <% } %>
+                        <div class="card mt-5">
+                            <div class="card-body">
+                                <h5 class="card-title m-b-0">Static Product Table</h5>
+                            </div>
+                            <table class="table ">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Srno</th>
+                                        <th scope="col">Category</th>
+                                        <th scope="col">Subcategory</th>
+                                        <th scope="col">Exsubcategory</th>
+                                        <th scope="col">Product</th>
+                                        <th scope="col">Action</th>
+                                        <th scope="col">Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <% productcategory.map((val,index)=>{ %>
+                                        <tr>
+                                            <td>
+                                                <%= ++index %>
+                                            </td>
+                                            <td>
+                                                <%= val?.categoryId?.category %>
+                                            </td>
+                                            <td>
+                                                <%= val?.subcategoryId?.subcategory %>
+                                            </td>
+                                            <td>
+                                                <%= val?.exsubcategory %>
+                                            </td>
+                                            <td>
+                                                <%= val?.productcategory %>
+                                            </td>
+                                            <td>
+                                                <a href="/productcategory/deleteproductcategegory?id=<%= val?.id %>"
+                                                    class="btn btn-danger btn-sm">Delete</a>
+
+                                                <a href="/productcategory/editexsubcategory?id=<%= val?.id %>"
+                                                    class="btn btn-primary btn-sm">Edit</a>
+                                            </td>
+                                            <td>
+
+
+                                                <% if(val?.status=="active" ) { %><a
+                                                        href="/productcategory/changestatus?id=<%= val?.id %>&status=deactive"
+                                                        class=" btn btn-success btn-sm">
+                                                        <%= val?.status %>
+                                                    </a>
+                                                    <% } else { %>
+                                                        <a href="/productcategory/changestatus?id=<%= val?.id %>&status=active"
+                                                            class="btn btn-warning btn-sm">
+                                                            <%= val?.status %>
+                                                        </a>
+                                                <% } %>
+                                            </td>
+                                        </tr>
+                                        <% }) %>
+                                </tbody>
+                            </table>
+                        </div>
+
+
+            </div>
+
+        </div>
+    </div>
+
+    <%-include('../footer') %>

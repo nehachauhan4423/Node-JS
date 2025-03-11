@@ -85,7 +85,7 @@
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-md-8">
-                    <div class="col-md-6">
+                    <div class="col-md-6 mt-2">
                         <% if(locals.message?.success){ %>
                             <div class="alert alert-success">
                                 <%= locals.message?.success %>
@@ -93,7 +93,7 @@
                             <% } %>
                     </div>
                     <div class="card">
-                        <form action="/productcategory/insertexsubcategory" method="post">
+                        <form action="/productcategory/insertproductcategory" method="post">
                             <div class="card-body">
                                 <h4>Product</h4>
                                 <div class="form-group">
@@ -128,10 +128,10 @@
                                     <label>Exsubcategory</label>
                                     <div class="col-sm-10">
                                         <select name="exsubcategory" id="exsubcategory">
-                                            <option>---select subcategory---</option>
+                                            <option>---select exsubcategory---</option>
                                             <% exsubcategory.map((val)=> { %>
                                                 <option value="<%= val?.id %>">
-                                                    <%= val?.category %>
+                                                    <%= val?.exsubcategory %>
                                                 </option>
                                                 <% }) %>
                                         </select>
@@ -139,7 +139,7 @@
                                 </div>
                                 
                                 <div class="form-group">
-                                    <label>Exsubcategory</label>
+                                    <label>Product</label>
                                     <div class="col-sm-10">
                                         <input type="text" name="productcategory" placeholder="Product Category">
                                     </div>

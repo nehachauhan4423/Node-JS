@@ -88,42 +88,69 @@ const insertProductCategory = async (req, res) => {
     }
 }
 
-// const deleteexsubcategegory = async (req, res) => {
-//     try {
-//         let id = req.query?.id;
-//         await ExSubcategoryModel.findByIdAndDelete(id);
-//         req.flash('success', 'subcategory successfully delete')
-//         return res.redirect('/exsubcategory');
 
-//     } catch (err) {
-//         console.log(err);
-//         return false;
+const changeStatus = async(req,res) => {
+    try{
+        const {id,status} = req.query;
+        if(status == "deactive"){
+            await ProductModel.findByIdAndUpdate(id,{
+                status : status
+            })
+            req.flash('success',"Subcategory update")
+            return res.redirect('/productcategory')
+        }else{
+            await ProductModel.findByIdAndUpdate(id,{
+                status : status
+            })
+            req.flash("success","Subcategory Update")
+            return res.redirect('/productcategory')
+        }
+    }catch(err){
+        console.log(err);
+        return false
+    }
+}
 
-//     }
-// }
+const deleteProductCategegory = async (req, res) => {
+    try {
+        let id = req.query?.id;
+        await ProductModel.findByIdAndDelete(id);
+        req.flash('success', 'subcategory successfully delete')
+        return res.redirect('/productcategory');
+
+    } catch (err) {
+        console.log(err);
+        return false;
+
+    }
+}
 
 
-// const editExsubcategory = async (req, res) => {
-//     try {
-//         let id = req.query?.id
-//         let category = await CategoryModel.find({ status: 'active' })
-//         let subcategory = await SubcategoryModel.find({ status: 'active' })
-
-//         let single = await ExSubcategoryModel.findById(id).populate('categoryId').populate('subcategoryId');
-//         return res.render('exsubcategory/exeditsubcategory', {
-//             category: category,
-//             subcategory: subcategory,
-//             single
-//         })
-//     } catch (err) {
-//         console.log(err);
-//         return false;
-//     }
-// }
+const editProductcategory = async (req, res) => {
+    try {
+        let id = req.query?.id
+        let category = await CategoryModel.find({ status: 'active' })
+        let subcategory = await SubcategoryModel.find({ status: 'active' })
+        let exsubcategory = await ExsubcategoryModel.find({status: 'active'})
+        let single = await ProductModel.findById(id).populate('categoryId').populate('subcategoryId').populate('exsubcategoryId');
+        return res.render('productcategory/editproductcategory', {
+            category: category,
+            subcategory: subcategory,
+            exsubcategory:exsubcategory,
+            single
+        })
+    } catch (err) {
+        console.log(err);
+        return false;
+    }
+}
 
 module.exports = {
     viewproductsubcategorypage,
     addproductcategorypage,
     ajaxProductCategorywiseRecord,
-    insertProductCategory
+    insertProductCategory,
+    changeStatus,
+    deleteProductCategegory,
+    editProductcategory
 }
