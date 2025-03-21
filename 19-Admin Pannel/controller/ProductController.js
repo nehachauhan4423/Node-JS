@@ -41,7 +41,7 @@ const ajaxProductCategorywiseRecord = async (req, res) => {
     try {
         let category = await SubcategoryModel.find({ categoryId: categoryid }).populate('categoryId');
         console.log(category);
-        let subcategory = await ExSubcategoryModel.find({ categoryId: categoryid }).populate('categoryId').populate('subcategoryId');
+        let subcategory = await ExsubcategoryModel.find({ categoryId: categoryid }).populate('categoryId').populate('subcategoryId');
         console.log(subcategory);
         let productcategory = await ProductModel.find({ categoryId: categoryid }).populate('categoryId').populate('productId');
         return res.status(200).send({
