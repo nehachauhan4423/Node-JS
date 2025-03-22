@@ -35,6 +35,7 @@ const viewCategoryPage = async (req, res) => {
 //         return false
 //     }
 // }
+
 const insertCategory = async (req, res) => {
     try {
         const { category, price, qty, description } = req.body;
@@ -56,7 +57,6 @@ const insertCategory = async (req, res) => {
         return res.redirect('/category/addcategorypage');
     }
 };
-
 
 
 const deleteCategory = async (req, res) => {
