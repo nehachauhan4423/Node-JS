@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: linear-gradient(135deg, #E3F2FD, #BBDEFB);
+        }
+        .auth-container {
+            background: white;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            width: 400px;
+            text-align: center;
+        }
+        .auth-container h2 {
+            margin-bottom: 20px;
+            color: #1976D2;
+            font-weight: bold;
+        }
+        .input-group {
+            position: relative;
+            margin-bottom: 20px;
+            text-align: left;
+        }
+        .input-group input {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #1976D2;
+            border-radius: 8px;
+            font-size: 16px;
+            outline: none;
+            transition: 0.3s;
+        }
+        .input-group input:focus {
+            border-color: #1565C0;
+            box-shadow: 0 0 8px rgba(25, 118, 210, 0.5);
+        }
+        .auth-btn {
+            width: 100%;
+            padding: 12px;
+            background: #1976D2;
+            border: none;
+            color: white;
+            font-size: 18px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+        .auth-btn:hover {
+            background: #1565C0;
+        }
+        .forgot-password, .signup-link {
+            margin-top: 10px;
+            font-size: 14px;
+        }
+        .forgot-password a, .signup-link a {
+            color: #1976D2;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        .forgot-password a:hover, .signup-link a:hover {
+            text-decoration: underline;
+        }
+        .social-login {
+            margin-top: 20px;
+        }
+        .social-login button {
+            width: 100%;
+            padding: 10px;
+            margin-top: 10px;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        .google-btn {
+            background: #DB4437;
+            color: white;
+        }
+        .google-btn:hover {
+            background: #c1351d;
+        }
+        .facebook-btn {
+            background: #1877F2;
+            color: white;
+        }
+        .facebook-btn:hover {
+            background: #145dbf;
+        }
+    </style>
+</head>
+<body>
+    <div class="auth-container">
+        <h2>Login</h2>
+        <form action="/loginuser" method="post">
+            <div class="input-group">
+                <input type="email" placeholder="Email" name="email" required>
+            </div>
+            <div class="input-group">
+                <input type="password" placeholder="Password" name="password" required>
+            </div>
+            <button type="submit" class="auth-btn">Sign In</button>
+        </form>
+        <div class="forgot-password">
+            <a href="/otp">Forgot Password?</a>
+        </div>
+        <div class="signup-link">
+            Don't have an account? <a href="/register">Sign up</a>
+        </div>
+        <div class="social-login">
+            <button class="google-btn">Login with Google</button>
+            <button class="facebook-btn">Login with Facebook</button>
+        </div>
+    </div>
+</body>
+</html>

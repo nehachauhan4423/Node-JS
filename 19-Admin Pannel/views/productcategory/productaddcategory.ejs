@@ -129,15 +129,11 @@
                                     <div class="col-sm-10">
                                         <select name="exsubcategory" id="exsubcategory">
                                             <option>---select exsubcategory---</option>
-                                            <!-- <% exsubcategory.map((val)=> { %>
+                                            <% exsubcategory.map((val)=> { %>
                                                 <option value="<%= val?.id %>">
                                                     <%= val?.exsubcategory %>
                                                 </option>
-                                                <% }) %> -->
-                                                <% exsubcategory.forEach(exsub => { %>
-                                                    <option value="<%= exsub._id %>"><%= exsub.name %></option>
-                                                <% }); %>
-                                                
+                                                <% }) %>                                                
                                         </select>
                                     </div>
                                 </div>
