@@ -96,6 +96,7 @@
 
 <!-- Main Container -->
 <div class="container mt-5">
+    
     <div class="row justify-content-center">
         <div class="col-lg-10 col-md-12">
             
@@ -107,9 +108,13 @@
             <% } %>
 
             <!-- Table Card -->
+            <div class="col-9">
+                <a href="/logout" class="text-end align-end text-dark" style="text-align: end;">LOGOUT</a>
+            </div>
             <div class="card">
                 <div class="card-header">
                     <i class="fas fa-folder"></i> Category List
+                  
                 </div>
                 <div class="card-body">
                     <table class="table table-hover align-middle">
@@ -143,10 +148,9 @@
             </td> -->
            <td>
             <img src="<%= val.image ? '/uploads/' + val.image : '/images/default-image.png' %>" 
-     alt="Category Image" 
-     class="product-img"
-     onerror="console.error('Image not found:', this.src); this.src='/images/default-image.png';">
-
+                alt="Category Image" 
+                class="product-img"
+                onerror="console.error('Image not found:', this.src); this.src='/images/default-image.png';">
            </td>
             <td class="text-center">
                 <a href="/category/editcategory?id=<%= val?.id %>"
@@ -157,6 +161,10 @@
                    class="btn btn-sm btn-outline-danger">
                    <i class="fas fa-trash-alt"></i> Delete
                 </a>
+                <a href="/cart/add/<%= val?.id %>?name=<%= val?.category %>&price=<%= val?.price %>"
+                    class="btn btn-sm btn-outline-success">
+                    <i class="fas fa-cart-plus"></i> Add to Cart
+                 </a>
             </td>
             <td class="text-center">
                 <% if(val?.status == "active") { %>
@@ -176,10 +184,9 @@
 </tbody>
 
                     </table>
+                    <a href="category/addcategorypage">Add Product</a>
                 </div>
             </div>
-            <!-- End Table Card -->
-
         </div>
     </div>
 </div>

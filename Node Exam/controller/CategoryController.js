@@ -85,6 +85,18 @@ const editCategory = async(req,res) => {
     }
 }
 
+// const editCategory = async (req, res) => {
+//     try {
+//         let id = req.query?.id;
+//         let single = await CategoryModel.findById(id);
+//         return res.render('category/editcategory', { single });
+//     } catch (err) {
+//         console.log(err);
+//         return res.redirect('/category');
+//     }
+// };
+
+
 
 
 const updateCategory = async(req,res) => {
@@ -134,3 +146,5 @@ module.exports = {
     changeStatus,
     insertCategory
 }
+
+
